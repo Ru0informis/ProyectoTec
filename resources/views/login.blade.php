@@ -19,10 +19,13 @@
     @csrf
     <div class="form_title">Bienvenido</div>
     <div>
-    <label>Nombre</label><input class="form_user" type="text" name="name">
+    <center><label>Nombre</label></center>
+    <input class="form_user" type="text" name="name">
     </div>
     <div>
-    <label >Contraseña</label><input class="form_user" type="password" name="pass">
+    <center><label >Contraseña</label></center>
+    
+    <input class="form_user" type="password" name="pass">
     </div>
     <input type="submit" class="btnLog" value="LogIN"">
     </form>
