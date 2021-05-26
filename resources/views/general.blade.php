@@ -13,7 +13,7 @@
 @guest
 <section class="header">
         <div class="header_container">
-            <label class="lbl_header">Bienvenido a My DashBoard online</label>
+            <label class="lbl_header">Bienvenido a Tienda Proyecto</label>
         </div>
     <div class="content">
         <div class="navigation_container">
@@ -31,7 +31,7 @@
 @else
 <section class="header">
         <div class="header_container">
-            <label class="lbl_header">Bienvenido a My DashBoard online</label>
+            <label class="lbl_header">Bienvenido a Tienda Proyecto</label>
         </div>
     </section>  
     <div class="content">
