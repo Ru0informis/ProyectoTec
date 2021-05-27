@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{{ asset('static/css/style.css') }}">
-    <title>Bienvenido</title>
+    <title>Bienvenido uwu</title>
     
 </head>
 <body>
