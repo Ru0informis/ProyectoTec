@@ -17,7 +17,7 @@
     @endif
     <form class="form_login" action="/validar" method="POST">
     @csrf
-    <div class="form_title">Bienvenido hola perritos</div>
+    <div class="form_title">Bienvenido</div>
     <div>
     <center><label>Nombre</label></center>
     <input class="form_user" type="text" name="name">
