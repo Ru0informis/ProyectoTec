@@ -14,7 +14,10 @@ class AutenticarController extends Controller
         $nombre = $request -> input('name');
         $password = $request ->input('pass');
         $usuario = Usuario::where('nombre', $nombre)->get();
-        
+    
+           if($size = sizeof($usuario)==0){
+            return redirect('/autenticar') ->with('error','El usuario ingresado no existe');
+           }else{
             foreach ($usuario as $user){
                 if(Hash::check($password, $user->password) & $user->rol =="Supervisor"){
                     Auth::login($user);
@@ -27,11 +30,11 @@ class AutenticarController extends Controller
                     Auth::login($user);
                     return redirect('/');
                 }else{
-                    
                     return redirect('/autenticar') ->with('error','Datos incorrectos!');
                 }
                     
             }
+           }
             //return redirect('/autenticar') ->with('error','Datos incorrectos!');
 
         
@@ -74,19 +77,26 @@ class AutenticarController extends Controller
         $email = $request->input('email');
         $nombre = $request -> input('name');
         $usuario = Usuario::where('nombre', $nombre)->get();
-        foreach ($usuario as $user){
-            if($user->nombre == $nombre & $user->correo == $email ){
-                //$updatePassword = Usuario::find($user->corre);
-                //$newPassword = Hash::make($password);
-                //$updatePassword->password=Hash::make($request->input('pass'));
-                $user->password=Hash::make($request->input('pass'));
-                $user->save();
-                return redirect('/restorePassword') ->with('message','Contraseña actualizada');
-                
-            }else{
-                
-                return redirect('/restorePassword') ->with('error','El correo ingresado no existe');
+
+        if($size = sizeof($usuario)==0){
+            return redirect('/restorePassword') ->with('error','El correo ingresado no existe');
+           }else{
+            foreach ($usuario as $user){
+                if($user->nombre == $nombre & $user->correo == $email ){
+                    //$updatePassword = Usuario::find($user->corre);
+                    //$newPassword = Hash::make($password);
+                    //$updatePassword->password=Hash::make($request->input('pass'));
+                    $user->password=Hash::make($request->input('pass'));
+                    $user->save();
+                    return redirect('/restorePassword') ->with('message','Contraseña actualizada');
+                    
+                }else{
+                    
+                    return redirect('/restorePassword') ->with('error','El correo ingresado no existe');
+                }
             }
-        }
+           }
+
+        
     }
 }

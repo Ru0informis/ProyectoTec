@@ -22,7 +22,7 @@
 
             <h1> Bienvenido</h1>
             <form class="form_login" action="/validar" method="POST">
-            @csrf
+                @csrf
                 <label for="username"> Usuario</label>
                 <input type="text" name="name" placeholder="Ingrese Usuario" required>
 
