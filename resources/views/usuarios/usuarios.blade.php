@@ -55,7 +55,6 @@
     .content_bread{
         background-color: rgba(7, 7, 7, 0.39);
         margin-top: 0;
-        margin-bottom: 5px;
     }
     </style>
 @section('breadcumb')

@@ -29,35 +29,34 @@
         </div>
     </div>
 @else
-    <section class="header">
-        <div class="header_container">
-            <label class="lbl_header">Bienvenido a Tienda Proyecto</label>
+<div class="header_container">
+    <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
+        <div class="navigation_icon_menu">
+            <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
         </div>
-    </section>  
-    <div class="content">
-        <div class="navigation_container">
-                <nav class="navigation">
-                    <lu class="navigation_list">
-                        <li>
-                            <center>
-                            <img width="100px" height="100px" src="{{ asset(Auth::user()->imagen) }}" alt="">
-                            <br> Nombre: {{ Auth::user()-> nombre }} {{ Auth::user()-> a_paterno }} {{ Auth::user()-> a_materno }} ({{ Auth::user()-> rol }})
-                            </center>
-                        </li>
-                    <lu class="navigation_list">
-                        <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/"><img class="navigation_link_img" src="{{ asset('static/img/home.png') }}"> Inicio</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard/"><img class="navigation_link_img" src="{{ asset('static/img/categories.png') }}">Categorias</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos"><img class="navigation_link_img" src="{{ asset('static/img/products.png') }}">Productos</a></li>
-                        @can('show', App\Models\Usuario::class)
-                        <li class="navigation_item"><a class="navigation_link" href="/Usuarios"><img class="navigation_link_img" src="{{ asset('static/img/categories.png') }}">Usuarios</a></li>
-                        @endcan
-                        <li class="navigation_item"><a class="navigation_link" href="/salir"><img class="navigation_link_img" src="{{ asset('static/img/logout.png') }}">Salir</a></li>
-                    </lu>
-                </nav>
-        </div>
+        @yield('breadcumb')
+    </div>
+    <div class="navigation_container" id="menu">
+            <ul class="navigation_list">
+                    <li>
+                    <center>
+                    <img class="img_user" width="100px" height="100px" src="{{ asset(Auth::user()->imagen) }}" alt=""><br>
+                    <label class="lb_user">Nombre: {{ Auth::user()-> nombre }} {{ Auth::user()-> a_paterno }} {{ Auth::user()-> a_materno }} ({{ Auth::user()-> rol }})</label> 
+                    </center>
+                    </li>
+                    <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
+                    <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
+                    <li class="navigation_item"><a class="navigation_link" href="/dashBoard">Categorias</a></li>
+                    <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
+                    @can('show', App\Models\Usuario::class)
+                    <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
+                    @endcan
+                    <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
+            </ul>
+    </div>
+</div>
         <div class="content_views">
-             @yield('breadcumb')
+             
              @yield('categoria')
              @yield('usuarios')
              @yield('Tproductos')
@@ -69,6 +68,21 @@
 
         </div>
     </div>
+    <script>
+        const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu');
+        iconMenu.addEventListener('click', (e) => {
+            console.log("hola")
+            menu.classList.toggle('active')
+            document.body.classList.toggle('opacity');
+            const iconmMenuSelected = e.target.getAttribute('src');
+            if(iconmMenuSelected == "http://mycarritoonline.test/static/img/menu.png"){
+                e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu_selected.png')
+            }else{
+                e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu.png')
+            }
+        });
+    
+    </script>
 </body>
 @endguest 
 </html>
