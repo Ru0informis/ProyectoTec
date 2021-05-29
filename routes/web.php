@@ -25,7 +25,8 @@ Route::post('validar','AutenticarController@validar');
 Route::get('salir','AutenticarController@salir');
 Route::post('agregar','AutenticarController@agregar');
 Route::get('registrar','AutenticarController@registrar');
-
+Route::get('restorePassword', 'AutenticarController@recuperarContraseña');
+Route::put('updatePassword','AutenticarController@actualizarContraseña');
 
 Route::get('dashBoard/productos','productosController@index');
 Route::post('dashBoard/productos','productosController@store');

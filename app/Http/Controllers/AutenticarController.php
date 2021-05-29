@@ -6,32 +6,35 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 class AutenticarController extends Controller
 {
     public function validar(Request $request){
         $nombre = $request -> input('name');
-        $usuario = Usuario::where('nombre', $nombre)->first();
-        if(is_null($usuario))
-            return redirect('/autenticar') ->with('error','Usuario no registrado');
-        else{
-            $password = $request ->input('pass');
-            $password_bd = $usuario->password; 
-            $rol = $usuario->rol;
-            if(Hash::check($password, $password_bd) & $rol =="Supervisor"){
-                Auth::login($usuario);
-                return redirect('/');
-            }elseif(Hash::check($password, $password_bd) & $rol =="Cliente"){
-                Auth::login($usuario);
-                return redirect('/');
-
-            }elseif(Hash::check($password, $password_bd) & $rol =="Revisor"){
-                Auth::login($usuario);
-                return redirect('/');
-
+        $password = $request ->input('pass');
+        $usuario = Usuario::where('nombre', $nombre)->get();
+        
+            foreach ($usuario as $user){
+                if(Hash::check($password, $user->password) & $user->rol =="Supervisor"){
+                    Auth::login($user);
+                    return redirect('/');
+                    
+                }elseif(Hash::check($password, $user->password) & $user->rol == "Cliente"){
+                    Auth::login($user);
+                    return redirect('/');
+                }elseif(Hash::check($password, $user->password) & $user->rol == "Revisor"){
+                    Auth::login($user);
+                    return redirect('/');
+                }else{
+                    
+                    return redirect('/autenticar') ->with('error','Datos incorrectos!');
+                }
+                    
             }
-            return redirect('/autenticar') ->with('error','Usuario no registrado');
-        }
+            //return redirect('/autenticar') ->with('error','Datos incorrectos!');
+
+        
     }
     public function registrar()
     {
@@ -61,5 +64,29 @@ class AutenticarController extends Controller
     public function salir(){
         Auth::logout();
         return redirect('/index');
+    }
+    public function recuperarContraseña(){
+        return view('resetPassword');
+    }
+    public function actualizarContraseña(Request $request)
+    {
+        $password = $request->input('pass');
+        $email = $request->input('email');
+        $nombre = $request -> input('name');
+        $usuario = Usuario::where('nombre', $nombre)->get();
+        foreach ($usuario as $user){
+            if($user->nombre == $nombre & $user->correo == $email ){
+                //$updatePassword = Usuario::find($user->corre);
+                //$newPassword = Hash::make($password);
+                //$updatePassword->password=Hash::make($request->input('pass'));
+                $user->password=Hash::make($request->input('pass'));
+                $user->save();
+                return redirect('/restorePassword') ->with('message','Contraseña actualizada');
+                
+            }else{
+                
+                return redirect('/restorePassword') ->with('error','El correo ingresado no existe');
+            }
+        }
     }
 }
