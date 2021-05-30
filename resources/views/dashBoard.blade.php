@@ -24,18 +24,18 @@
                         <li class="navigation_item"><a class="navigation_link" href="#">Acerca de</a></li> 
                 </nav>
         </div>
-        <div class="content_views">
+        <div class="registro">
              @yield('registro')
         </div>
     </div>
 @else
 <div class="header_container">
-    <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
+        <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
         <div class="navigation_icon_menu">
             <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
         </div>
         @yield('breadcumb')
-    </div>
+        </div>
     <div class="navigation_container" id="menu">
             <ul class="navigation_list">
                     <li>
@@ -53,7 +53,7 @@
                     @endcan
                     <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
             </ul>
-    </div>
+</div>
 </div>
         <div class="content_views">
              
@@ -67,7 +67,8 @@
 
 
         </div>
-    </div>
+</div>
+
     <script>
         const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu');
         iconMenu.addEventListener('click', (e) => {

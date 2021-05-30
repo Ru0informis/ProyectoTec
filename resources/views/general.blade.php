@@ -22,7 +22,7 @@
         <div class="navigation_container" id="menu">
                
                     <ul class="navigation_list">
-                        <li class="navigation_item"><a class="navigation_link" href="/registrar">Ver productos</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="">Ver productos</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/index">Iniciar sesión</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/registrar">Registrarse</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="#">Acerca de</a></li> 
@@ -30,9 +30,9 @@
     
         </div>
         <div class="content_views">
-             @yield('registro')
-        </div>
-
+            @yield('registro')
+       </div>
+       
 @else
     <div class="header_container">
         <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
