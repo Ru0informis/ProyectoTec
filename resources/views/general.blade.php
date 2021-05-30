@@ -38,7 +38,11 @@
            <div class="list_categories">
                @yield('listCategories')
            </div>
+           <div class="list_products">
+            @yield('verProducto')
+           </div>
             @yield('registro')
+            
        </div>
        
 @else

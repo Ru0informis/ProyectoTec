@@ -7,7 +7,7 @@
         <img src="{{ $categoria->imagen }}" class="img_cotegory">
         <label class="lb_category">Categoría: {{ $categoria->nombre }}</label>
         <label class="lb_description">Descripción: {{ $categoria->descripcion }}</label>
-        <a href="" class="link_category">Visualizar categoría</a>
+        <a href="categoria/{{ $categoria->id }}" class="link_category">Visualizar categoría</a>
        </div>
     @empty
 

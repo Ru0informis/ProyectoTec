@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\VarDumper\VarDumper;
+
 class CategoriasController extends Controller
 {
      /**
@@ -112,5 +116,10 @@ class CategoriasController extends Controller
         //return "<script>alert('hola');</script>";
         return redirect('dashBoard/');
     }
-
+    public function verProductoCategoria($id){
+        $productos = DB::table('productos')
+                        ->where('categoria_id',$id)->get();
+        return view('verProductoCategoria', compact('productos'));
+        
+    }
 }

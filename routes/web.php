@@ -47,6 +47,6 @@ Route::put('dashBoard/{categoria}','CategoriasController@update');
 Route::get('dashBoard/{categoria}','CategoriasController@show');
 Route::delete('dashBoard/{categoria}','CategoriasController@destroy');
 Route::get('dashBoard/{categoria}/edit','CategoriasController@edit');
-
+Route::get('categoria/{categoria}','CategoriasController@verProductoCategoria');
 Route::resource('Usuarios', 'UsuariosController');
 Route::resource('Clientes', 'ClientesController');
