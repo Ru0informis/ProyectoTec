@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -14,7 +15,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 Route::get('/', function(){
-    return view('general');
+    $categorias = Categoria::all();
+    return view('listCategories', compact('categorias'));
 });
 Route::get('/index', function(){
     return view('general');
@@ -35,6 +37,8 @@ Route::put('dashBoard/productos/{producto}','productosController@update');
 Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
+
+/*categorias */
 
 Route::get('dashBoard','CategoriasController@index');
 Route::post('dashBoard','CategoriasController@store');

@@ -1,3 +1,9 @@
+.form_search{
+    display: flex;
+    position: absolute;
+    left: 80%;
+    top: 17%;
+}
 .registro{
     margin-left: auto;
     margin-right: auto;
@@ -84,7 +90,7 @@ label{
 }
 .header_container{
     margin: 0;
-    background: blue;
+    background: #1d232f;
     padding: 0;
     font-family: 'Lobster', cursive;
 }
@@ -97,6 +103,7 @@ label{
     margin-left: 5px;
     position: relative;
     z-index: 10;
+    width: 42px;
 }
 .navigation_icon {
     vertical-align: top;
@@ -152,9 +159,50 @@ label{
 .active{
     transform: translate(600px);
 }
+
 .opacity{
     background-color: rgba(0, 0, 0, 0.164);
     transition: all .5s ease;
 
 }
 
+
+/* listar categorias */
+.list_categories{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    justify-content: space-between;
+}
+.category_item{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 5px;
+    text-align:justify;
+    margin-left: 5px;
+}
+.img_category{
+    width: 50px;
+    height: 50px;
+}
+.lb_category{
+    color: black;
+    font-size: 17px;
+}
+.lb_description{
+    color: black;
+    font-size: 17px;
+}
+.link_category{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    background-color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 2px;
+    border-radius: 3px;
+}

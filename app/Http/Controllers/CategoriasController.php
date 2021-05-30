@@ -7,7 +7,7 @@ use App\Models\Categoria;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
+use Illuminate\Support\Facades\Storage;
 class CategoriasController extends Controller
 {
      /**
@@ -45,7 +45,9 @@ class CategoriasController extends Controller
         $categoria = new Categoria();
         $categoria ->nombre = $request->input('nombre');
         $categoria ->descripcion = $request->input('descripcion');
-        $categoria ->imagen = "";
+        $imagen = $request -> file('imagen')-> store('public/imagenes/categorias');
+        $url = Storage::url($imagen);
+        $categoria ->imagen = $url;
         $categoria ->activa = 0;
         $categoria ->save();
         return redirect('dashBoard/');

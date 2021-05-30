@@ -1,6 +1,7 @@
 @extends('dashBoard')
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
          border: 1px solid rgba(255, 255, 255, 0);
          border-spacing: 0;
          margin: auto;
+         text-align: center;
 
             }
         .link_add{
@@ -34,10 +36,10 @@
         th, td{
             text-align: center;
             font-size: 18px;
-            width: 25%;
-            vertical-align: top;
+            width: min-content;
+            vertical-align: center;
             border: 1px solid black;
-            padding: 5px;
+            padding: 2px;
             
         }
         .acciones_links{
@@ -66,6 +68,9 @@
         margin-top: 0;
         margin-bottom: 5px;
     }
+    .imgC{
+        width: 30%;
+    }
     </style>
 @section('categoria')
 @section('breadcumb')
@@ -89,8 +94,8 @@
 <tbody>
     @forelse($categorias as $categoria)
         <tr>
+            <td><img class="imgC" src="{{$categoria->imagen}}" alt=""></td>
             <td>{{$categoria->nombre}}</td>
-            <td>3</td>
         <td>
         @can('create', $categoria)
         <a class="acciones_links" href="/dashBoard/{{$categoria->id}}/edit">Editar</a>

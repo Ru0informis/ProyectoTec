@@ -18,6 +18,26 @@
         margin-top: 0;
         margin-bottom: 5px;
     }
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 353px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    input{
+        margin-top: 10px;
+    }
+    .btnSend{
+        width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 2px;
+        font-size: 18px;
+    }
+    textarea{
+        resize: none;
+    }
 </style>
 <div class="content_bread">
     <ul>
@@ -28,10 +48,11 @@
 </div>
 @endsection
 @section('create')
-    <form action="/dashBoard" method="post">
+    <form action="/dashBoard" method="post" enctype="multipart/form-data">
         @csrf
         Categoria: <input type="text" name="nombre">
-        Descripción: <input type="text" name="descripcion"> 
-        <input type="submit" value="enviar">
+        Descripción: <textarea name="descripcion" cols="30" rows="10"></textarea>
+        Imagen: <input type="file" name="imagen">
+        <input type="submit" value="Crear categoría" class="btnSend">
     </form>
 @endsection

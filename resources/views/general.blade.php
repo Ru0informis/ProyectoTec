@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <title>Bienvenido</title>
 </head>
-<body>
+<body >
 @guest
 
         <div class="header_container">
@@ -18,18 +18,26 @@
                 <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
             </div>
         </div>
-        
+        <form class="form_search" action="">
+            Buscar: <input type="text" placeholder="Buscar un producto"> 
+            <button type="submit"><img src="static/img/buscar.png" width="20px"></button>
+         </form>
         <div class="navigation_container" id="menu">
                
                     <ul class="navigation_list">
-                        <li class="navigation_item"><a class="navigation_link" href="">Ver productos</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/categorias">Categorías</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/index">Iniciar sesión</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/registrar">Registrarse</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="#">Acerca de</a></li> 
                     </ul>
     
         </div>
-        <div class="content_views">
+        <div class="content_views" id="b">
+            
+           <div class="list_categories">
+               @yield('listCategories')
+           </div>
             @yield('registro')
        </div>
        
@@ -61,9 +69,8 @@
     </div>
 @endguest  
 <script>
-    const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu');
+    const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu'), bo = document.getElementById('b');
     iconMenu.addEventListener('click', (e) => {
-        console.log("hola")
         menu.classList.toggle('active')
         document.body.classList.toggle('opacity');
         const iconmMenuSelected = e.target.getAttribute('src');
@@ -72,8 +79,9 @@
         }else{
             e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu.png')
         }
+        
     });
-
+   
 </script>
 </body>
 </html>
