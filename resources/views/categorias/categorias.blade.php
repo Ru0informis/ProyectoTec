@@ -85,7 +85,7 @@
 <table class="table_categories">
 <thead>
 @can('create', App\Models\Categoria::class)
-    <tr class="link_add"><td colspan="3"><a href="/dashBoard/create">Agregar categoria</a></td></tr>
+    <tr class="link_add"><td colspan="3"><a href="/Categorias/create">Agregar categoria</a></td></tr>
 @endcan
 <th>Nombre</th>
 <th>CantidadProductos</th>
@@ -98,11 +98,11 @@
             <td>{{$categoria->nombre}}</td>
         <td>
         @can('create', $categoria)
-        <a class="acciones_links" href="/dashBoard/{{$categoria->id}}/edit">Editar</a>
+        <a class="acciones_links" href="/Categorias/{{$categoria->id}}/edit">Editar</a>
         @endcan
-        <a class="acciones_links" href="/dashBoard/{{$categoria->id}}">Mostrar</a>
+        <a class="acciones_links" href="/Categorias/{{$categoria->id}}">Mostrar</a>
         @can('create', $categoria)
-            <form action="/dashBoard/{{$categoria->id}}" method="post" style="display: inline;">
+            <form action="/Categorias/{{$categoria->id}}" method="post" style="display: inline;">
                 @csrf
                 @method('DELETE')
                 <button class="acciones_links" type="submit">Eliminar</button>

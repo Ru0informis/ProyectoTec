@@ -23,7 +23,7 @@
                
                     <ul class="navigation_list">
                         <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/categorias">Categorías</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/VerCategorias">Categorías</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/index">Iniciar sesión</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/registrar">Registrarse</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="#">Acerca de</a></li> 
@@ -62,7 +62,7 @@
                         </li>
                         <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard">Categorias</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
                         @can('show', App\Models\Usuario::class)
                         <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
