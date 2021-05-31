@@ -29,7 +29,7 @@ li{
         color: rgb(255, 255, 255);
     }
     .content_bread{
-        background-color: rgba(7, 7, 7, 0.39);
+        background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
     }

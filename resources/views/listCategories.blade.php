@@ -1,7 +1,7 @@
 @extends('general')
 
 @section('listCategories')
-    
+
     @forelse ( $categorias as $categoria )
        <div class="category_item">
         <img src="{{ $categoria->imagen }}" class="img_cotegory">

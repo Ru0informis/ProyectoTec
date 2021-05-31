@@ -212,7 +212,12 @@ label{
     display: flex;
     flex-wrap: wrap;
     margin-left: 10px;
-    justify-content: space-between;
+}
+.products_list_busqueda{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 10px;
 }
 .products_item{
     display: flex;

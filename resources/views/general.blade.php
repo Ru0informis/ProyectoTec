@@ -18,10 +18,7 @@
                 <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
             </div>
         </div>
-        <form class="form_search" action="">
-            Buscar: <input type="text" placeholder="Buscar un producto"> 
-            <button type="submit"><img src="static/img/buscar.png" width="20px"></button>
-         </form>
+        
         <div class="navigation_container" id="menu">
                
                     <ul class="navigation_list">
@@ -38,8 +35,11 @@
            <div class="list_categories">
                @yield('listCategories')
            </div>
-           <div class="list_products">
+           <div class="products_list">
             @yield('verProducto')
+           </div>
+           <div class="products_list_busqueda">
+            @yield('resultadoBusqueda')
            </div>
             @yield('registro')
             

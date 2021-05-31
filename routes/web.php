@@ -18,6 +18,9 @@ Route::get('/', function(){
     $categorias = Categoria::all();
     return view('listCategories', compact('categorias'));
 });
+Route::get('categorias', function(){
+   
+});
 Route::get('/index', function(){
     return view('general');
 })-> middleware('auth');
@@ -37,9 +40,10 @@ Route::put('dashBoard/productos/{producto}','productosController@update');
 Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
-
+Route::get('/buscarProducto/{categoriaId}','productosController@buscarProducto');
 /*categorias */
-
+Route::get('/','CategoriasController@verCategorias');
+Route::get('categorias','CategoriasController@verCategorias');
 Route::get('dashBoard','CategoriasController@index');
 Route::post('dashBoard','CategoriasController@store');
 Route::get('dashBoard/create','CategoriasController@create');

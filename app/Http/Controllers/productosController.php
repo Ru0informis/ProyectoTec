@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 class productosController extends Controller
 {
@@ -126,5 +127,10 @@ class productosController extends Controller
         //return "<script>alert('hola');</script>";
         return redirect('/dashBoard/productos');
     }
-
+    public function buscarProducto($id,Request $request){
+        $buscarProducto = $request->input('buscarProducto');
+        $busqueda = DB::table('productos')
+                    ->where('producto',$buscarProducto)->get();
+        return view('resultadoBusqueda', compact('busqueda'));
+    }
 }

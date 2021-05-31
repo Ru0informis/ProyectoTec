@@ -119,7 +119,13 @@ class CategoriasController extends Controller
     public function verProductoCategoria($id){
         $productos = DB::table('productos')
                         ->where('categoria_id',$id)->get();
-        return view('verProductoCategoria', compact('productos'));
+        $categoriaId = $id;
+        return view('verProductoCategoria', compact('productos',"categoriaId"));
+        
+    }
+    public function verCategorias(){
+        $categorias = Categoria::all();
+        return view('listCategories', compact('categorias'));
         
     }
 }
