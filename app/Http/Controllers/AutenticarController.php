@@ -66,7 +66,7 @@ class AutenticarController extends Controller
     }
     public function salir(){
         Auth::logout();
-        return redirect('/index');
+        return redirect('/');
     }
     public function recuperarContraseña(){
         return view('resetPassword');

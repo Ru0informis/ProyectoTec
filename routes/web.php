@@ -18,9 +18,7 @@ Route::get('/', function(){
     $categorias = Categoria::all();
     return view('listCategories', compact('categorias'));
 });
-Route::get('categorias', function(){
-   
-});
+
 Route::get('/index', function(){
     return view('general');
 })-> middleware('auth');

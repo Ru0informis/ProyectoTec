@@ -36,11 +36,14 @@
         margin-left: auto;
         width: 400px;
     }
+    textarea{
+        resize: none;
+    }
 </style>
     <form class="form_create" action="/dashBoard/productos" method="post" enctype="multipart/form-data">
         @csrf
         Producto: <input type="text" name="producto">
-        Descripción: <input type="text" name="descripcion"> 
+        Descripción: <textarea name="descripcion" cols="30" rows="10"></textarea>
         Precio: <input type="text" name="precio"> 
         Imagen: <input type="file" name="imagen">
         Categoría: <select name="categoria">
