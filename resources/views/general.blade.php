@@ -72,11 +72,15 @@
         </div>
     </div>
     <div>
+        @yield('resultadoBusquedaSupervisor')
+        @if ($usuarios ?? '' == null || $categorias ?? '' ==null || $productos ?? '')
+            
+        @else
         <label style="color: black" for="nUsuarios">Usuarios Registrados:</label>
         <?php
             $cu=0;
         ?>
-        @foreach ($usuarios as $user)
+        @foreach ($usuarios ?? '' as $user)
             <?php
                 $cu++;
             ?>     
@@ -90,7 +94,7 @@
         <?php
             $cc=0;
         ?>
-        @foreach ($categorias as $categoria)
+        @foreach ($categorias ?? '' as $categoria)
         <?php
             $cc++;
         ?>
@@ -104,7 +108,7 @@
         <?php
             $cp=0;
         ?>
-        @foreach ($productos as $producto)
+        @foreach ($productos ?? '' as $producto)
         <?php
             $cp++;
         ?>
@@ -112,11 +116,12 @@
         <?php
             echo $cp;
         ?>
+        @endif
 
         
 
         
-        @yield('resultadoBusquedaSupervisor')
+        
     </div>
 @endguest  
 <script>

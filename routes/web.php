@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Categoria;
+use App\Models\Usuario;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -19,8 +21,11 @@ Route::get('/', function(){
     return view('listCategories', compact('categorias'));
 });
 
-Route::get('/index', function(){
-    return view('general');
+Route::get('index', function(){
+    $usuarios = Usuario::all();
+                    $productos = Producto::all();
+                    $categorias = Categoria::all();
+                    return view('general', compact('usuarios', 'categorias', 'productos'));
 })-> middleware('auth');
 
 Route::get('autenticar','AutenticarController@autenticar')->name('login');;
