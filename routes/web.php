@@ -39,26 +39,12 @@ Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
 Route::get('/buscarProducto/{categoriaId}','productosController@buscarProducto');
+Route::get('/buscarProductoSupervisor','productosController@buscarProductoSupervisor');
+
 /*categorias */
 Route::get('VerCategorias','CategoriasController@verCategorias');
 Route::get('productosByCategorias/{categoria}','CategoriasController@ProductoByCategoria');
 Route::resource('Categorias','CategoriasController');
-/*
-Route::get('/','CategoriasController@verCategorias');
-Route::get('categorias','CategoriasController@verCategorias');
-
-Route::get('dashBoard','CategoriasController@index');
-Route::post('dashBoard','CategoriasController@store');
-Route::get('dashBoard/create','CategoriasController@create');
-Route::put('dashBoard/{categoria}','CategoriasController@update');
-Route::get('dashBoard/{categoria}','CategoriasController@show');
-Route::delete('dashBoard/{categoria}','CategoriasController@destroy');
-Route::get('dashBoard/{categoria}/edit','CategoriasController@edit');
-
-Route::get('categoria/{categoria}','CategoriasController@verProductoCategoria');
-
-
-*/
 
 Route::resource('Usuarios', 'UsuariosController');
 Route::resource('Clientes', 'ClientesController');
