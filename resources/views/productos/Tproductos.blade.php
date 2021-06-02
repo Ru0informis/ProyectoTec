@@ -65,7 +65,13 @@
 </div>
 @endsection
 @section('Tproductos')
-   
+<form class="form_search" action="/buscarProducto/{{$categoriaId ?? ''}}/">
+    Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
+    <select name="categoria" id="">
+        @foreach($categorias as $categoria)
+    </select>
+    <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
+ </form>
 
 <table class="table_categories">
 <thead>

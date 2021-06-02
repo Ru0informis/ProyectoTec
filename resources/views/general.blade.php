@@ -15,7 +15,7 @@
         <div class="header_container">
             <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
             <div class="navigation_icon_menu">
-                <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
+                <img class="navigation_icon" id='menuIcon' src="static/img/menu.png">
             </div>
         </div>
         
@@ -49,7 +49,7 @@
     <div class="header_container">
         <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
             <div class="navigation_icon_menu">
-                <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
+                <img class="navigation_icon" id='menuIcon' src="static/img/menu.png">
             </div>
         </div>
         <div class="navigation_container" id="menu">
@@ -79,9 +79,9 @@
         document.body.classList.toggle('opacity');
         const iconmMenuSelected = e.target.getAttribute('src');
         if(iconmMenuSelected == "http://mycarritoonline.test/static/img/menu.png"){
-            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu_selected.png')
+            e.target.setAttribute('src','http://proyectoequipo.test/static/img/menu_selected.png')
         }else{
-            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu.png')
+            e.target.setAttribute('src','http://proyectoequipo.test/static/img/menu.png')
         }
         
     });
