@@ -104,7 +104,7 @@ class UsuariosController extends Controller
         $img = $request -> file('imagen1');
         if(is_null($request['pass1'])){
             unset($valores['pass1']);
-            //unset($valores['pass2']);
+            unset($valores['pass2']);
         }else{
             $newPassword = Hash::make($valores['pass1']);
                     //$updatePassword->password=Hash::make($request->input('pass'));
