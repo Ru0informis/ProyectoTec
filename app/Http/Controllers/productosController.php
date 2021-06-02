@@ -58,6 +58,7 @@ class productosController extends Controller
         $valores['imagen'] = $url;
         $valores['usuario_id'] = $usuario_id;
         $valores['categoria_id'] = $categoria_id;
+        $valores['concesionado'] = 1;
         $registro = new Producto();
         $registro -> fill($valores);
         //var_dump($valores['categoria']);
@@ -151,6 +152,8 @@ class productosController extends Controller
 
         
     }
+
+    
     public function consignar (Request $request){
         $buscarProducto = $request->input('buscarProducto');
         
