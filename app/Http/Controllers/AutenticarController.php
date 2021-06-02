@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Categoria;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +23,10 @@ class AutenticarController extends Controller
             foreach ($usuario as $user){
                 if(Hash::check($password, $user->password) & $user->rol =="Supervisor"){
                     Auth::login($user);
-                    return redirect('/');
+                    $usuarios = Usuario::all();
+                    $productos = Producto::all();
+                    $categorias = Categoria::all();
+                    return view('general', compact('usuarios', 'categorias', 'productos'));
                     
                 }elseif(Hash::check($password, $user->password) & $user->rol == "Cliente"){
                     Auth::login($user);

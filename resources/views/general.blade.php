@@ -72,6 +72,32 @@
         </div>
     </div>
     <div>
+        <label style="color: black" for="nUsuarios">Usuarios Registrados</label>
+        <?php
+            $cu=0;
+        ?>
+        @foreach ($usuarios as $user)
+            <?php
+                $cu++;
+            ?>     
+        @endforeach
+        <?php
+            echo $cu;
+        ?>
+        <br>
+        <label for="nUsuarios">Categorias Registradas</label>
+        @foreach ($categorias as $categoria)
+            {{ $categoria->nombre}}
+        @endforeach
+        <br>
+        <label for="nUsuarios">Prodcutos Registrados</label>
+        @foreach ($productos as $producto)
+            {{ $producto->producto}}
+        @endforeach
+
+        
+
+        
         @yield('resultadoBusquedaSupervisor')
     </div>
 @endguest  

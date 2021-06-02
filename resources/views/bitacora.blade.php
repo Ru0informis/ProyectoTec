@@ -1,0 +1,7 @@
+@extends ('general')
+
+@section
+
+
+
+@endsection
