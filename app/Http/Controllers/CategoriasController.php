@@ -111,16 +111,15 @@ class CategoriasController extends Controller
         return redirect('Categorias');
     }
     public function ProductoByCategoria($id){
-      /*
+      
         $productos = DB::table('productos')
                         ->where('categoria_id',$id)->get();
         $categoriaId = $id;
-        */
+       
 
-        $productos = Producto::scopeProductosConcesionados();
-        echo $productos;
+    
 
-       // return view('verProductoCategoria', compact('productos',"categoriaId"));
+        return view('verProductoCategoria', compact('productos',"categoriaId"));
         
     }
     public function verCategorias(){
