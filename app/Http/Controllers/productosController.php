@@ -128,10 +128,25 @@ class productosController extends Controller
         //return "<script>alert('hola');</script>";
         return redirect('/dashBoard/productos');
     }
+
     public function buscarProducto($id,Request $request){
         $buscarProducto = $request->input('buscarProducto');
+        
         $busqueda = DB::table('productos')
                     ->where('producto',$buscarProducto)->get();
+        
         return view('resultadoBusqueda', compact('busqueda'));
+    }
+
+    public function buscarProductoSupervisor(Request $request){
+       
+        $buscarProducto= $request->all();
+        
+        $busqueda2 = DB::table('productos')
+                    ->where('producto',$buscarProducto['buscarProducto'])
+                    ->where('categoria_id',$buscarProducto['categoria'])->get();
+        return view('resultadoBusquedaSupervisor', compact('busqueda2'));
+
+        
     }
 }

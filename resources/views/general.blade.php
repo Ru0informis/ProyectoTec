@@ -71,6 +71,9 @@
                 </ul>
         </div>
     </div>
+    <div>
+        @yield('resultadoBusquedaSupervisor')
+    </div>
 @endguest  
 <script>
     const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu'), bo = document.getElementById('b');
