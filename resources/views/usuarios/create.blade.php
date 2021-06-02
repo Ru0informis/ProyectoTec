@@ -59,7 +59,7 @@ input{
         Correo: <input type="text" name="correo">
         Imagen: <input type="file" name="imagen" accept="image/*">
         @error('imagen') <small>{{$message}}</small> @enderror <br>
-        Rol: <select name="rol" id="rol"> 
+        Rol: <select name="rol"> 
             <option >Supervisor</option>
             <option >Revisor</option>
             <option >Encargado</option>

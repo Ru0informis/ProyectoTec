@@ -52,9 +52,6 @@ class UsuariosController extends Controller
         $valores = $request ->all();
         if($request['password'] != $request['password2'])
             return redirect()-> back() ->with('error', 'Las contraseñas no coinciden');
-       
-        $valores['rol']="Cliente";
-        $valores['activo']="1";
         $imagen = $request -> file('imagen')-> store('public/imagenes');
         $url = Storage::url($imagen);
         $valores['imagen'] = $url;
@@ -101,16 +98,14 @@ class UsuariosController extends Controller
     {
         $registro = Usuario::find($id);
         $valores = $request ->all(); //recupero todos los datos del formulario
-        $img = $request -> file('imagen1');
-        if(is_null($request['pass1'])){
-            unset($valores['pass1']);
-            unset($valores['pass2']);
-        }else{
-            $newPassword = Hash::make($valores['pass1']);
-                    //$updatePassword->password=Hash::make($request->input('pass'));
-            $valores['pass1']=$newPassword;
-        }
-            //hola?
+
+        if($valores['password'] != $valores['password2'])
+            return redirect()-> back() ->with('error', 'Las contraseñas no coinciden');
+        if(is_null($valores['password']))
+            unset($valores['password']);
+        else
+            $valores['password'] = Hash::make( $valores['password'] );
+        $img = $request -> file('imagen');
         if(!is_null($img) ){
             $imagen = $request -> file('imagen1')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
             $url_replace = str_replace('storage','public', $registro->imagen); //reemplazo la url para eliminar del storage
@@ -119,10 +114,17 @@ class UsuariosController extends Controller
             $url = Storage::url($imagen);
             $valores['imagen'] = $url;
         }
-        
         $registro ->fill($valores);
         $registro ->save();
-        return redirect('/Usuarios')-> with('mensaje','Usuario modificadosss');
+        return redirect('/Usuarios')-> with('mensaje','Datos actualizados');
+
+
+
+
+
+
+
+        
     }
         
 

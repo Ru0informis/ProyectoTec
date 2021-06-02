@@ -74,8 +74,8 @@ input{
             <option >Contador</option>
             <option >Cliente</option>
         </select>
-        Password: <input type="password" name="pass1"> 
-        Confirmar password: <input type="password" name="pass2"> 
+        Password: <input type="password" name="password"> 
+        Confirmar password: <input type="password" name="password2"> 
         <input class="btn" type="submit" value="Actualizar">
     </form>
 @endsection
