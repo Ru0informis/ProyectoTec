@@ -102,9 +102,13 @@ class UsuariosController extends Controller
         $registro = Usuario::find($id);
         $valores = $request ->all(); //recupero todos los datos del formulario
         $img = $request -> file('imagen1');
-        if(is_null($request['pass1']) || is_null($request['pass2'])){
+        if(is_null($request['pass1'])){
             unset($valores['pass1']);
-            unset($valores['pass2']);
+            //unset($valores['pass2']);
+        }else{
+            $newPassword = Hash::make($valores['pass1']);
+                    //$updatePassword->password=Hash::make($request->input('pass'));
+            $valores['pass1']=$newPassword;
         }
             //hola?
         if(!is_null($img) ){
@@ -115,9 +119,7 @@ class UsuariosController extends Controller
             $url = Storage::url($imagen);
             $valores['imagen'] = $url;
         }
-        $newPassword = Hash::make($valores['pass1']);
-                    //$updatePassword->password=Hash::make($request->input('pass'));
-        $valores['pass1']=$newPassword;
+        
         $registro ->fill($valores);
         $registro ->save();
         return redirect('/Usuarios')-> with('mensaje','Usuario modificadosss');
