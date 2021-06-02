@@ -154,14 +154,6 @@ class productosController extends Controller
     }
 
     
-    public function consignar (Request $request){
-        $buscarProducto = $request->input('buscarProducto');
-        
-        $busqueda = DB::table('productos')
-                    ->where('producto',$buscarProducto)->get();
-        
-        return view('productos.Tconsignas', compact('busqueda'));
-    }
-
+    
 
 }

@@ -131,9 +131,9 @@
         document.body.classList.toggle('opacity');
         const iconmMenuSelected = e.target.getAttribute('src');
         if(iconmMenuSelected == "http://mycarritoonline.test/static/img/menu.png"){
-            e.target.setAttribute('src','http://proyectoequipo.test/static/img/menu_selected.png')
+            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu_selected.png')
         }else{
-            e.target.setAttribute('src','http://proyectoequipo.test/static/img/menu.png')
+            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu.png')
         }
         
     });
