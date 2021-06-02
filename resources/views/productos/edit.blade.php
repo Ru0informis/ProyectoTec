@@ -14,7 +14,7 @@
        
     }
     .content_bread{
-        background-color: rgba(7, 7, 7, 0.39);
+        background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
     }
@@ -30,19 +30,20 @@
 @section('edit')
 <style>
     .form_edit{
-        
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
         display: flex;
         flex-direction: column;
 
     }
     textarea{
-        width: 250px;
-        height: 100px;
         padding: 5px;
+        resize: none;
     }
     img{
-        width: 10%;
-        height: 10%;
+        width: 50%;
+        height: 50%;
     }
     input{
         width: 400px;
@@ -52,7 +53,7 @@
         @csrf
         @method('PUT')
         Producto: <input type="text" name="producto" value="{{$producto->producto}}">
-        Descripción: <input type="text" name="descripcion" value="{{$producto->descripcion}}"> 
+        Descripción:<textarea name="descripcion" cols="30" rows="10">{{$producto->descripcion}}</textarea> 
         Precio: <input type="text" name="precio" value="{{$producto->precio}}"> 
         Imagen: <img src="{{$producto->imagen}}" alt=""><input type="file" name="imagen"> 
         <input class="form_edit_input" type="submit" value="enviar">

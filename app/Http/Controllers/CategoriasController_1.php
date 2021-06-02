@@ -14,7 +14,7 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class CategoriasController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,6 +33,7 @@ class CategoriasController extends Controller
     public function create()
     {
         return view('categorias.create');
+        //
     }
 
     /**
@@ -43,6 +44,8 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
+        //$seccion = $request->input('seccion');
+        //Categoria::agregar($seccion);
         $categoria = new Categoria();
         $categoria ->nombre = $request->input('nombre');
         $categoria ->descripcion = $request->input('descripcion');
@@ -51,7 +54,7 @@ class CategoriasController extends Controller
         $categoria ->imagen = $url;
         $categoria ->activa = 0;
         $categoria ->save();
-        return redirect('Categorias');
+        return redirect('dashBoard/');
     }
 
     /**
@@ -87,15 +90,16 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $categoria = Categoria::find($id);
         $categoria->nombre = $request->input('nombre');
         $categoria->descripcion = $request->input('descripcion');
-        //$categoria->imagen = "";
+        $categoria->imagen = "";
         $categoria->activa = 1;
         $categoria->save();
         //$seccion = $request->input('seccion');
         //Categoria::editar($id, $seccion);
-        return redirect('Categorias');
+        return redirect('dashBoard/');
     }
 
     /**
@@ -107,10 +111,12 @@ class CategoriasController extends Controller
     public function destroy($id)
     {
         Categoria::destroy($id);
+        
+
         //return "<script>alert('hola');</script>";
-        return redirect('Categorias');
+        return redirect('dashBoard/');
     }
-    public function ProductoByCategoria($id){
+    public function verProductoCategoria($id){
         $productos = DB::table('productos')
                         ->where('categoria_id',$id)->get();
         $categoriaId = $id;

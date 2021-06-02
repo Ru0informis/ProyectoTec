@@ -14,7 +14,7 @@
        
     }
     .content_bread{
-        background-color: rgba(7, 7, 7, 0.39);
+        background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
     }
@@ -38,7 +38,7 @@
         padding: 5px;
     }
 </style>
-<form class="form_edit" action="/dashBoard/{{$categoria->id}}" method="post">
+<form class="form_edit" action="/Categorias/{{$categoria->id}}" method="post">
         @csrf
         @method('PUT')
         Categoria: <input class="form_edit_input" type="text" name="nombre" value="{{$categoria->nombre}}"> <br><br>

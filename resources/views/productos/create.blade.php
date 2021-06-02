@@ -14,7 +14,7 @@
        
     }
     .content_bread{
-        background-color: rgba(7, 7, 7, 0.39);
+        background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
     }
@@ -36,11 +36,14 @@
         margin-left: auto;
         width: 400px;
     }
+    textarea{
+        resize: none;
+    }
 </style>
     <form class="form_create" action="/dashBoard/productos" method="post" enctype="multipart/form-data">
         @csrf
         Producto: <input type="text" name="producto">
-        Descripción: <input type="text" name="descripcion"> 
+        Descripción: <textarea name="descripcion" cols="30" rows="10"></textarea>
         Precio: <input type="text" name="precio"> 
         Imagen: <input type="file" name="imagen">
         Categoría: <select name="categoria">

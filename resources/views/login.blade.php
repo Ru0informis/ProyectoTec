@@ -10,29 +10,40 @@
 </head>
 
 <body>
-    @if(session('error'))
-        {{session('error')}}
-    @endif
+    
     
     <div class = "login-box">
+        <div id="session_error">
+            @if(session('error'))
+            {{session('error')}}<button onclick="closeN()" id="close_notification" >X</button>
+        @endif
+        </div>
         <img class= "avatar" src="static/logo.png" alt = "Logo">
 
             <h1> Bienvenido</h1>
             <form class="form_login" action="/validar" method="POST">
-            @csrf
+                @csrf
                 <label for="username"> Usuario</label>
-                <input type="text" name="name" placeholder="Ingrese Usuario">
+                <input type="text" name="name" placeholder="Ingrese Usuario" required>
 
                 <label for="password"> Contraseña</label>
-                <input type="password" name="pass" placeholder="Ingrese contraseña">
+                <input type="password" name="pass" placeholder="Ingrese contraseña" required>
 
                 <button class="btn" type="submit" name="btnIniciar" value="login">
                      Ingresar
                 </button>
 
             </form>
+            <a class="rPassword" href="/restorePassword">¿Olvidó su contraseña?</a>
             
     </div>
+    <script>
+        var btnClose = document.getElementById('close_notification')
+        var divSessionError =  document.getElementById('session_error')
+        function closeN() {
+           divSessionError.innerHTML = '';
+        }
+    </script>
 </body>
 </html>
 

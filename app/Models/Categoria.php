@@ -14,7 +14,7 @@ class Categoria extends Model
         return $this -> hasMany('App\Models\Producto');
     }
     public function concesionado(){
-        return $this -> hasMany('Appa\Models\Producto') -> where('concesionado', 1);
+        return $this -> hasMany('App\Models\Producto') -> where('concesionado', 1);
     }
     
     use HasFactory;

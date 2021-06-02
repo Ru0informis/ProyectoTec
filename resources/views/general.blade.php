@@ -9,66 +9,84 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <title>Bienvenido</title>
 </head>
-<body>
+<body >
 @guest
-<section class="header">
+
         <div class="header_container">
-            <label class="lbl_header">Bienvenido a Tienda Proyecto</label>
+            <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
+            <div class="navigation_icon_menu">
+                <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
+            </div>
         </div>
-    <div class="content">
-        <div class="navigation_container">
-                <nav class="navigation">
-                    <lu class="navigation_list">
-                        <li class="navigation_item"><a class="navigation_link" href="/index"><img class="navigation_link_img" src="{{ asset('static/img/home.png') }}"> Iniciar sesión</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/registrar"><img class="navigation_link_img" src="{{ asset('static/img/categories.png') }}">Registrarse</a></li>
+        
+        <div class="navigation_container" id="menu">
+               
+                    <ul class="navigation_list">
+                        <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/VerCategorias">Categorías</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/index">Iniciar sesión</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/registrar">Registrarse</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="#">Acerca de</a></li> 
-                </nav>
+                    </ul>
+    
         </div>
-        <div class="content_views">
-             @yield('registro')
-        </div>
-    </div>
+        <div class="content_views" id="b">
+            
+           <div class="list_categories">
+               @yield('listCategories')
+           </div>
+           <div class="products_list">
+            @yield('verProducto')
+           </div>
+           <div class="products_list_busqueda">
+            @yield('resultadoBusqueda')
+           </div>
+            @yield('registro')
+            
+       </div>
+       
 @else
-<section class="header">
-        <div class="header_container">
-            <label class="lbl_header">Bienvenido a Tienda Proyecto</label>
+    <div class="header_container">
+        <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
+            <div class="navigation_icon_menu">
+                <img class="navigation_icon" id='menuIcon' src="{{ asset('static/img/menu.png') }}">
+            </div>
         </div>
-    </section>  
-    <div class="content">
-        <div class="navigation_container">
-                <nav class="navigation">
-                    <lu class="navigation_list">
-                    <li>
+        <div class="navigation_container" id="menu">
+                <ul class="navigation_list">
+                        <li>
                         <center>
-                        <img width="100px" height="100px" src="{{ asset(Auth::user()->imagen) }}" alt="">
-                        <br> Nombre: {{ Auth::user()-> nombre }} {{ Auth::user()-> a_paterno }} {{ Auth::user()-> a_materno }} ({{ Auth::user()-> rol }})
+                        <img class="img_user" width="100px" height="100px" src="{{ asset(Auth::user()->imagen) }}" alt=""><br>
+                        <label class="lb_user">Nombre: {{ Auth::user()-> nombre }} {{ Auth::user()-> a_paterno }} {{ Auth::user()-> a_materno }} ({{ Auth::user()-> rol }})</label> 
                         </center>
-                    </li>
-                    <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/"><img class="navigation_link_img" src="{{ asset('static/img/home.png') }}"> Inicio</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard"><img class="navigation_link_img" src="{{ asset('static/img/categories.png') }}">Categorias</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos"><img class="navigation_link_img" src="{{ asset('static/img/products.png') }}">Productos</a></li>
+                        </li>
+                        <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
                         @can('show', App\Models\Usuario::class)
-                        <li class="navigation_item"><a class="navigation_link" href="/Usuarios"><img class="navigation_link_img" src="{{ asset('static/img/categories.png') }}">Usuarios</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
                         @endcan
-                        
-                        <li class="navigation_item"><a class="navigation_link" href="/salir"><img class="navigation_link_img" src="{{ asset('static/img/logout.png') }}">Salir</a></li>
-                    </lu>
-                </nav>
-        </div>
-        <div class="content_views">
-            @if(session('mensaje'))
-                <div>
-                    {{session('mensaje')}}
-                </div>
-            @endif
-             
-
-
+                        <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
+                </ul>
         </div>
     </div>
-
 @endguest  
+<script>
+    const iconMenu = document.getElementById('menuIcon'), menu = document.getElementById('menu'), bo = document.getElementById('b');
+    iconMenu.addEventListener('click', (e) => {
+        menu.classList.toggle('active')
+        document.body.classList.toggle('opacity');
+        const iconmMenuSelected = e.target.getAttribute('src');
+        if(iconmMenuSelected == "http://mycarritoonline.test/static/img/menu.png"){
+            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu_selected.png')
+        }else{
+            e.target.setAttribute('src','http://mycarritoonline.test/static/img/menu.png')
+        }
+        
+    });
+   
+</script>
 </body>
 </html>
 

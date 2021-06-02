@@ -1,6 +1,7 @@
 @extends('dashBoard')
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
          border: 1px solid rgba(255, 255, 255, 0);
          border-spacing: 0;
          margin: auto;
+         text-align: center;
 
             }
         .link_add{
@@ -34,10 +36,10 @@
         th, td{
             text-align: center;
             font-size: 18px;
-            width: 25%;
-            vertical-align: top;
+            width: min-content;
+            vertical-align: center;
             border: 1px solid black;
-            padding: 5px;
+            padding: 2px;
             
         }
         .acciones_links{
@@ -62,9 +64,12 @@
        
     }
     .content_bread{
-        background-color: rgba(7, 7, 7, 0.39);
+        background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
+    }
+    .imgC{
+        width: 30%;
     }
     </style>
 @section('categoria')
@@ -80,24 +85,24 @@
 <table class="table_categories">
 <thead>
 @can('create', App\Models\Categoria::class)
-    <tr class="link_add"><td colspan="3"><a href="/dashBoard/create">Agregar categoria</a></td></tr>
+    <tr class="link_add"><td colspan="3"><a href="/Categorias/create">Agregar categoria</a></td></tr>
 @endcan
-<th>Nombre</th>
-<th>CantidadProductos</th>
+<th>Imagen</th>
+<th>Categorías</th>
 <th>Acciones</th>
 </thead>
 <tbody>
     @forelse($categorias as $categoria)
         <tr>
+            <td><img class="imgC" src="{{$categoria->imagen}}" alt=""></td>
             <td>{{$categoria->nombre}}</td>
-            <td>3</td>
         <td>
         @can('create', $categoria)
-        <a class="acciones_links" href="/dashBoard/{{$categoria->id}}/edit">Editar</a>
+        <a class="acciones_links" href="/Categorias/{{$categoria->id}}/edit">Editar</a>
         @endcan
-        <a class="acciones_links" href="/dashBoard/{{$categoria->id}}">Mostrar</a>
+        <a class="acciones_links" href="/Categorias/{{$categoria->id}}">Mostrar</a>
         @can('create', $categoria)
-            <form action="/dashBoard/{{$categoria->id}}" method="post" style="display: inline;">
+            <form action="/Categorias/{{$categoria->id}}" method="post" style="display: inline;">
                 @csrf
                 @method('DELETE')
                 <button class="acciones_links" type="submit">Eliminar</button>
