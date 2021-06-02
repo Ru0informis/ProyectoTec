@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Producto::scopeProductosConcesionados()-> get();
+//use App\Models\Producto::scopeProductosConcesionados()-> get();
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Producto;
