@@ -102,6 +102,11 @@ class UsuariosController extends Controller
         $registro = Usuario::find($id);
         $valores = $request ->all(); //recupero todos los datos del formulario
         $img = $request -> file('imagen1');
+        if(is_null($request['pass1']) || is_null($request['pass2'])){
+            unset($valores['pass1']);
+            unset($valores['pass2']);
+        }
+            
         if(!is_null($img) ){
             $imagen = $request -> file('imagen1')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
             $url_replace = str_replace('storage','public', $registro->imagen); //reemplazo la url para eliminar del storage
@@ -110,6 +115,9 @@ class UsuariosController extends Controller
             $url = Storage::url($imagen);
             $valores['imagen'] = $url;
         }
+        $newPassword = Hash::make($valores['pass1']);
+                    //$updatePassword->password=Hash::make($request->input('pass'));
+        $valores['pass1']=$newPassword;
         $registro ->fill($valores);
         $registro ->save();
         return redirect('/Usuarios')-> with('mensaje','Usuario modificadosss');
