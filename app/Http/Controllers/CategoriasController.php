@@ -115,10 +115,16 @@ class CategoriasController extends Controller
         $productos = DB::table('productos')
                         ->where('categoria_id',$id)->get();
         $categoriaId = $id;
+<<<<<<< HEAD
         
 
         //$productos = Producto::scopeProductosConcesionados();
         //echo $productos;
+=======
+       
+
+    
+>>>>>>> 2479aea929871d137cadf2c1f12757138b160a9c
 
         return view('verProductoCategoria', compact('productos',"categoriaId"));
         
