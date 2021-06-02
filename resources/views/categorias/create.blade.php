@@ -48,7 +48,7 @@
 </div>
 @endsection
 @section('create')
-    <form action="/dashBoard" method="post" enctype="multipart/form-data">
+    <form action="/Categorias" method="post" enctype="multipart/form-data">
         @csrf
         Categoria: <input type="text" name="nombre">
         Descripción: <textarea name="descripcion" cols="30" rows="10"></textarea>

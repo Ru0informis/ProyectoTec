@@ -51,7 +51,7 @@ class CategoriasController extends Controller
         $categoria ->imagen = $url;
         $categoria ->activa = 0;
         $categoria ->save();
-        return redirect('dashBoard/');
+        return redirect('Categorias');
     }
 
     /**
@@ -90,12 +90,12 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
         $categoria->nombre = $request->input('nombre');
         $categoria->descripcion = $request->input('descripcion');
-        $categoria->imagen = "";
+        //$categoria->imagen = "";
         $categoria->activa = 1;
         $categoria->save();
         //$seccion = $request->input('seccion');
         //Categoria::editar($id, $seccion);
-        return redirect('dashBoard/');
+        return redirect('Categorias');
     }
 
     /**
@@ -108,7 +108,7 @@ class CategoriasController extends Controller
     {
         Categoria::destroy($id);
         //return "<script>alert('hola');</script>";
-        return redirect('dashBoard/');
+        return redirect('Categorias');
     }
     public function ProductoByCategoria($id){
         $productos = DB::table('productos')

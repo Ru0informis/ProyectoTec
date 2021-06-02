@@ -38,7 +38,7 @@
         padding: 5px;
     }
 </style>
-<form class="form_edit" action="/dashBoard/{{$categoria->id}}" method="post">
+<form class="form_edit" action="/Categorias/{{$categoria->id}}" method="post">
         @csrf
         @method('PUT')
         Categoria: <input class="form_edit_input" type="text" name="nombre" value="{{$categoria->nombre}}"> <br><br>
