@@ -87,8 +87,8 @@
 @can('create', App\Models\Categoria::class)
     <tr class="link_add"><td colspan="3"><a href="/Categorias/create">Agregar categoria</a></td></tr>
 @endcan
-<th>Nombre</th>
-<th>CantidadProductos</th>
+<th>Imagen</th>
+<th>Categorías</th>
 <th>Acciones</th>
 </thead>
 <tbody>
