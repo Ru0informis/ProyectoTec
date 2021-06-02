@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Producto::scopeProductosConcesionados()-> get();
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Producto;
@@ -111,10 +111,16 @@ class CategoriasController extends Controller
         return redirect('Categorias');
     }
     public function ProductoByCategoria($id){
+      /*
         $productos = DB::table('productos')
                         ->where('categoria_id',$id)->get();
         $categoriaId = $id;
-        return view('verProductoCategoria', compact('productos',"categoriaId"));
+        */
+
+        $productos = Producto::scopeProductosConcesionados();
+        echo $productos;
+
+       // return view('verProductoCategoria', compact('productos',"categoriaId"));
         
     }
     public function verCategorias(){
