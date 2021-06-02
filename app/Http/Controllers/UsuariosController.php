@@ -106,7 +106,7 @@ class UsuariosController extends Controller
             unset($valores['pass1']);
             unset($valores['pass2']);
         }
-            
+            //hola?
         if(!is_null($img) ){
             $imagen = $request -> file('imagen1')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
             $url_replace = str_replace('storage','public', $registro->imagen); //reemplazo la url para eliminar del storage
