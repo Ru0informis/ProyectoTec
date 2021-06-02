@@ -72,7 +72,7 @@
         </div>
     </div>
     <div>
-        <label style="color: black" for="nUsuarios">Usuarios Registrados</label>
+        <label style="color: black" for="nUsuarios">Usuarios Registrados:</label>
         <?php
             $cu=0;
         ?>
@@ -85,15 +85,33 @@
             echo $cu;
         ?>
         <br>
-        <label for="nUsuarios">Categorias Registradas</label>
+
+        <label style="color: black" for="nUsuarios">Categorias Registradas: </label>
+        <?php
+            $cc=0;
+        ?>
         @foreach ($categorias as $categoria)
-            {{ $categoria->nombre}}
+        <?php
+            $cc++;
+        ?>
         @endforeach
+        <?php
+            echo $cc;
+        ?>
         <br>
-        <label for="nUsuarios">Prodcutos Registrados</label>
+
+        <label style="color: black" for="nUsuarios">Prodcutos Registrados: </label>
+        <?php
+            $cp=0;
+        ?>
         @foreach ($productos as $producto)
-            {{ $producto->producto}}
+        <?php
+            $cp++;
+        ?>
         @endforeach
+        <?php
+            echo $cp;
+        ?>
 
         
 
