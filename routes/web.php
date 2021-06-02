@@ -41,6 +41,10 @@ Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
 Route::get('/buscarProducto/{categoriaId}','productosController@buscarProducto');
 Route::get('/buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 
+
+
+Route::get('/consignar','productosController@consignar')->name('consignar');
+
 /*categorias */
 Route::get('VerCategorias','CategoriasController@verCategorias');
 Route::get('productosByCategorias/{categoria}','CategoriasController@ProductoByCategoria');

@@ -49,6 +49,8 @@
                     <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
                     <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
                     @can('show', App\Models\Usuario::class)
+                    <li class="navigation_item"><a class="navigation_link" href="/consignar">Consignas</a></li>
+
                     <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
                     @endcan
                     <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
