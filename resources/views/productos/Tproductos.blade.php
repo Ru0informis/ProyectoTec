@@ -68,7 +68,7 @@
 <form class="form_search" action="/buscarProducto/{{$categoriaId ?? ''}}/">
     Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
     <select name="categoria" id="">
-    <option value="">Seleccione una Categoría.</option>
+    <option value="">Seleccione Categoría.</option>
         @foreach($categorias as $categoria)
             <option value="{{$categoria->id}}"> {{$categoria->nombre}} </option>
         @endforeach
