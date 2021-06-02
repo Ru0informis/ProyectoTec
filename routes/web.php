@@ -48,7 +48,7 @@ Route::get('/buscarProductoSupervisor','productosController@buscarProductoSuperv
 
 
 
-Route::get('/consignar','productosController@consignar')->name('consignar');
+//Route::get('/consignar','productosController@consignar')->name('consignar');
 
 /*categorias */
 Route::get('VerCategorias','CategoriasController@verCategorias');
