@@ -21,7 +21,8 @@ class productosController extends Controller
             $producto = Producto::where('usuario_id', Auth::id())->get();
        else
             $producto = Producto::all();
-        return view('productos.Tproductos', compact('producto'));
+            $categorias = Categoria::all();
+        return view('productos.Tproductos', compact('producto', 'categorias'));
     }
 
     /**
