@@ -41,7 +41,7 @@
     li{
         list-style: none;
     }
-    ul{
+    #listC{
         display: flex;
         padding: 5px
     }
@@ -58,7 +58,7 @@
     </style>
 @section('breadcumb')
 <div class="content_bread">
-    <ul>
+    <ul id="listC">
         <li>Inicio > </li>
         <li class="item_selected">Productos</li>
     </ul>

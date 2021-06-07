@@ -50,14 +50,19 @@
                     <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
                     @can('show', App\Models\Usuario::class)
                     <li class="navigation_item"><a class="navigation_link" href="/consignar">Consignas</a></li>
-
-                    <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
+                    <li class="navigation_item" id="navigation_item_submenu">Usuarios
+                        <ul>
+                            <li><a class="navigation_link" href="/Usuarios">Ver usuarios</a></li>
+                            <li><a class="navigation_link" href="/Usuarios">Historial usuarios</a></li>
+                        </ul>
+                    </li>
                     @endcan
                     <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
             </ul>
 </div>
 </div>
         <div class="content_views">
+            @yield('listCategories')
              
              @yield('categoria')
              @yield('usuarios')

@@ -130,13 +130,15 @@ class productosController extends Controller
         return redirect('/dashBoard/productos');
     }
 
-    public function buscarProducto($id,Request $request){
+    public function buscarProducto(Request $request){
+        //buscarproductos usuario anonimo
         $buscarProducto = $request->input('buscarProducto');
         
         $busqueda = DB::table('productos')
-                    ->where('producto',$buscarProducto)->get();
+                    ->where('concesionado','=',0)
+                    ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         
-        return view('resultadoBusqueda', compact('busqueda'));
+        return view('anonimo.resultadoBusqueda', compact('busqueda'));
     }
 
     
@@ -144,9 +146,8 @@ class productosController extends Controller
     public function buscarProductoSupervisor(Request $request){
        
         $buscarProducto= $request->all();
-        
         $busqueda2 = DB::table('productos')
-                    ->where('producto',$buscarProducto['buscarProducto'])
+                    ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
                     ->where('categoria_id',$buscarProducto['categoria'])->get();
         return view('resultadoBusquedaSupervisor', compact('busqueda2'));
 

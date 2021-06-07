@@ -35,6 +35,12 @@
            <div class="list_categories">
                @yield('listCategories')
            </div>
+            <div class="form_search">
+                <form action="/buscarProducto">
+                    Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
+                    <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
+                </form>
+            </div>
            <div class="products_list">
             @yield('verProducto')
            </div>
@@ -61,66 +67,24 @@
                         </center>
                         </li>
                         <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
-                        <li class="navigation_item"><a class="navigation_link" href="/">Inicio</a></li>
+                        <li class="navigation_item"><a class="navigation_link" href="/index">Inicio</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
                         <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
                         @can('show', App\Models\Usuario::class)
-                        <li class="navigation_item"><a class="navigation_link" href="/Usuarios">Usuarios</a></li>
+                        <li class="navigation_item" id="navigation_item_submenu">Usuarios
+                            <ul>
+                                <li><a class="navigation_link" href="/Usuarios">Ver usuarios</a></li>
+                                <li><a class="navigation_link" href="/Usuarios">Historial usuarios</a></li>
+                            </ul>
+                        </li>
                         @endcan
                         <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
                 </ul>
         </div>
     </div>
     <div>
+        @yield('estadisticas')
         @yield('resultadoBusquedaSupervisor')
-        @if ($usuarios ?? '' == null || $categorias ?? '' ==null || $productos ?? '')
-            
-        @else
-        <label style="color: black" for="nUsuarios">Usuarios Registrados:</label>
-        <?php
-            $cu=0;
-        ?>
-        @foreach ($usuarios ?? '' as $user)
-            <?php
-                $cu++;
-            ?>     
-        @endforeach
-        <?php
-            echo $cu;
-        ?>
-        <br>
-
-        <label style="color: black" for="nUsuarios">Categorias Registradas: </label>
-        <?php
-            $cc=0;
-        ?>
-        @foreach ($categorias ?? '' as $categoria)
-        <?php
-            $cc++;
-        ?>
-        @endforeach
-        <?php
-            echo $cc;
-        ?>
-        <br>
-
-        <label style="color: black" for="nUsuarios">Prodcutos Registrados: </label>
-        <?php
-            $cp=0;
-        ?>
-        @foreach ($productos ?? '' as $producto)
-        <?php
-            $cp++;
-        ?>
-        @endforeach
-        <?php
-            echo $cp;
-        ?>
-        @endif
-
-        
-
-        
         
     </div>
 @endguest  

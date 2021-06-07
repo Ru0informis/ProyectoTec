@@ -116,15 +116,7 @@ class UsuariosController extends Controller
         }
         $registro ->fill($valores);
         $registro ->save();
-        return redirect('/Usuarios')-> with('mensaje','Datos actualizados');
-
-
-
-
-
-
-
-        
+        return redirect('/Usuarios')-> with('mensaje','Datos actualizados'); 
     }
         
 
@@ -139,5 +131,8 @@ class UsuariosController extends Controller
         Usuario::destroy($id);
         //return "<script>alert('hola');</script>";
         return redirect('/Usuarios');
+    }
+    public function historial(){
+
     }
 }

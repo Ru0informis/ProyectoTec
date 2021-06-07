@@ -22,7 +22,8 @@ class CategoriasController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('categorias.categorias', compact('categorias'));
+        return view('categorias.listCategories', compact('categorias'));
+        
     }
 
     /**
@@ -113,6 +114,7 @@ class CategoriasController extends Controller
     public function ProductoByCategoria($id){
       
         $productos = DB::table('productos')
+                        ->where('concesionado','=',1)
                         ->where('categoria_id',$id)->get();
         $categoriaId = $id;
         
@@ -120,12 +122,12 @@ class CategoriasController extends Controller
         //$productos = Producto::scopeProductosConcesionados();
         //echo $productos;
 
-        return view('verProductoCategoria', compact('productos',"categoriaId"));
+        return view('anonimo.verProductoCategoria', compact('productos',"categoriaId"));
         
     }
     public function verCategorias(){
         $categorias = Categoria::all();
-        return view('listCategories', compact('categorias'));
+        return view('anonimo.listCategories', compact('categorias'));
         
     }
 }

@@ -1,5 +1,4 @@
 @extends('general')
-
 @section('listCategories')
 
     @forelse ( $categorias as $categoria )

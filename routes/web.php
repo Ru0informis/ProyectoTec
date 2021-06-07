@@ -18,14 +18,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::get('/', function(){
     $categorias = Categoria::all();
-    return view('listCategories', compact('categorias'));
+    return view('anonimo.listCategories', compact('categorias'));
 });
 
 Route::get('index', function(){
     $usuarios = Usuario::all();
-                    $productos = Producto::all();
-                    $categorias = Categoria::all();
-                    return view('general', compact('usuarios', 'categorias', 'productos'));
+    $productos = Producto::all();
+    $categorias = Categoria::all();
+                    return view('estadisticas', compact('usuarios', 'categorias', 'productos'));
 })-> middleware('auth');
 
 Route::get('autenticar','AutenticarController@autenticar')->name('login');;
@@ -43,8 +43,8 @@ Route::put('dashBoard/productos/{producto}','productosController@update');
 Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
-Route::get('/buscarProducto/{categoriaId}','productosController@buscarProducto');
-Route::get('/buscarProductoSupervisor','productosController@buscarProductoSupervisor');
+Route::get('buscarProducto','productosController@buscarProducto');
+Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 
 
 

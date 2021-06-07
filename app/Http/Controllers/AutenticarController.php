@@ -26,7 +26,7 @@ class AutenticarController extends Controller
                     $usuarios = Usuario::all();
                     $productos = Producto::all();
                     $categorias = Categoria::all();
-                    return view('general', compact('usuarios', 'categorias', 'productos'));
+                    return view('estadisticas', compact('usuarios', 'categorias', 'productos'));
                     
                 }elseif(Hash::check($password, $user->password) & $user->rol == "Cliente"){
                     Auth::login($user);
@@ -46,7 +46,7 @@ class AutenticarController extends Controller
     }
     public function registrar()
     {
-        return view('registro');
+        return view('anonimo.registro');
     }
     public function agregar(Request $request){
         $valores = $request ->all();
@@ -74,7 +74,7 @@ class AutenticarController extends Controller
         return redirect('/');
     }
     public function recuperarContraseña(){
-        return view('resetPassword');
+        return view('anonimo.resetPassword');
     }
     public function actualizarContraseña(Request $request)
     {
