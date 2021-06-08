@@ -34,8 +34,8 @@ class UsuariosPolicy
     }
     public function show(Usuario $usuario)
     {
-        if($usuario->rol == "Cliente" || $usuario->rol == "Encargado" || $usuario->rol == "Contador"  ) return false;
-        if($usuario->rol == "Supervisor" || $usuario->rol == "Revisor") return true;
+        if($usuario->rol == "Cliente" || $usuario->rol == "Contador"  ) return false;
+        if($usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return true;
     }
 
     /**

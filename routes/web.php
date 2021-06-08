@@ -25,7 +25,7 @@ Route::get('index', function(){
     $usuarios = Usuario::all();
     $productos = Producto::all();
     $categorias = Categoria::all();
-                    return view('estadisticas', compact('usuarios', 'categorias', 'productos'));
+    return view('estadisticas', compact('usuarios', 'categorias', 'productos'));
 })-> middleware('auth');
 
 Route::get('autenticar','AutenticarController@autenticar')->name('login');;
@@ -36,6 +36,9 @@ Route::get('registrar','AutenticarController@registrar');
 Route::get('restorePassword', 'AutenticarController@recuperarContraseña');
 Route::put('updatePassword','AutenticarController@actualizarContraseña');
 
+
+Route::get('dashBoard/productos/concesionar/{id}','productosController@concesionarView');
+Route::post('dashBoard/productos/concesionar/{id}/concesionar','productosController@concesionarProducto');
 Route::get('dashBoard/productos','productosController@index');
 Route::post('dashBoard/productos','productosController@store');
 Route::get('dashBoard/productos/create','productosController@create');
@@ -53,7 +56,10 @@ Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervi
 /*categorias */
 Route::get('VerCategorias','CategoriasController@verCategorias');
 Route::get('productosByCategorias/{categoria}','CategoriasController@ProductoByCategoria');
+
 Route::resource('Categorias','CategoriasController');
 
+Route::get('showHistory/{id}','UsuariosController@showHistory');
 Route::resource('Usuarios', 'UsuariosController');
+Route::get('historialUsuarios','UsuariosController@historial');
 Route::resource('Clientes', 'ClientesController');

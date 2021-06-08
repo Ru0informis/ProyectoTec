@@ -135,7 +135,7 @@ class productosController extends Controller
         $buscarProducto = $request->input('buscarProducto');
         
         $busqueda = DB::table('productos')
-                    ->where('concesionado','=',0)
+                    ->where('concesionado','=',1)
                     ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
@@ -153,8 +153,27 @@ class productosController extends Controller
 
         
     }
-
-    
+    public function concesionarView($id){
+        $producto = Producto::find($id);
+        return view('concesionar',compact('producto'));
+    }
+    public function concesionarProducto($id, Request $request){
+        $productoAConsignar = Producto::find($id);
+        $respuesta = $request ->all();
+        if($respuesta['respuesta'] == "si" || $respuesta['respuesta'] == "SI" ){
+            $respuesta['respuesta'] = 1;
+            $productoAConsignar->concesionado = $respuesta['respuesta'];
+            $productoAConsignar ->save();
+            return redirect('/dashBoard/productos');
+        }else{
+            $respuesta['respuesta'] = 0;
+            $productoAConsignar->concesionado = $respuesta['respuesta'];
+            $productoAConsignar->motivo = $respuesta['motivo'];
+            $productoAConsignar ->save();
+            return redirect('/dashBoard/productos');
+        }
+        
+    }
     
 
 }

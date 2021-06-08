@@ -133,6 +133,13 @@ class UsuariosController extends Controller
         return redirect('/Usuarios');
     }
     public function historial(){
-
+        $usuarios = Usuario::all();
+        return view('bitacora', compact('usuarios'));
+    }
+    public function showHistory($nombre){
+        $historial = DB::table('bitacoras')
+                    ->where('quien',$nombre)->get();
+                    $usuarios = Usuario::all();
+        return view('verHistorial', compact('usuarios','historial'));
     }
 }

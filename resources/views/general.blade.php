@@ -12,7 +12,7 @@
 <body >
 @guest
 
-        <div class="header_container">
+    <div class="header_container">
             <center><label class="lbl_header">Bienvenido a Tienda Proyecto</label></center>
             <div class="navigation_icon_menu">
                 <img class="navigation_icon" id='menuIcon' src="static/img/menu.png">
@@ -35,21 +35,14 @@
            <div class="list_categories">
                @yield('listCategories')
            </div>
-            <div class="form_search">
-                <form action="/buscarProducto">
-                    Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
-                    <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
-                </form>
-            </div>
-           <div class="products_list">
             @yield('verProducto')
-           </div>
+           
            <div class="products_list_busqueda">
             @yield('resultadoBusqueda')
            </div>
             @yield('registro')
             
-       </div>
+    </div>
        
 @else
     <div class="header_container">
@@ -74,7 +67,7 @@
                         <li class="navigation_item" id="navigation_item_submenu">Usuarios
                             <ul>
                                 <li><a class="navigation_link" href="/Usuarios">Ver usuarios</a></li>
-                                <li><a class="navigation_link" href="/Usuarios">Historial usuarios</a></li>
+                                <li><a class="navigation_link" href="/historialUsuarios">Historial usuarios</a></li>
                             </ul>
                         </li>
                         @endcan
@@ -85,7 +78,7 @@
     <div>
         @yield('estadisticas')
         @yield('resultadoBusquedaSupervisor')
-        
+        @yield('bitacoras')
     </div>
 @endguest  
 <script>

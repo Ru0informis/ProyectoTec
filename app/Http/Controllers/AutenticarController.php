@@ -31,7 +31,7 @@ class AutenticarController extends Controller
                 }elseif(Hash::check($password, $user->password) & $user->rol == "Cliente"){
                     Auth::login($user);
                     return redirect('/');
-                }elseif(Hash::check($password, $user->password) & $user->rol == "Revisor"){
+                }elseif(Hash::check($password, $user->password) & $user->rol == "Encargado"){
                     Auth::login($user);
                     return redirect('/');
                 }else{

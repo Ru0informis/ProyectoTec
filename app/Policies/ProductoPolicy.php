@@ -13,6 +13,9 @@ class ProductoPolicy
     public function cambios(Usuario $usuario, Producto $producto){
         return $producto -> concesionado != 1;
     }
+    public function concesionar(Usuario $usuario){
+        if($usuario->rol == "Encargado") return true;
+    }
     /**
      * Determine whether the user can view any models.
      *

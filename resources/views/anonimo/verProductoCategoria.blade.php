@@ -1,8 +1,14 @@
 @extends('general')
 
 @section('verProducto')
-
-        @if ($var = sizeof($productos) ==0)
+<div class="form_search">
+    <form action="/buscarProducto">
+        Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
+        <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
+    </form>
+</div>
+<div class="products_list">
+         @if ($var = sizeof($productos) ==0)
         <div class="products_item">
             
             <label class="lb_product">No hay productos a mostrar</label>
@@ -19,6 +25,8 @@
                         <a class="link_product" href="{{ $producto->id }}">Comprar producto</a>
                     </div>
             @endforeach
-        @endif
+        @endif    
+</div>
+       
    
 @endsection

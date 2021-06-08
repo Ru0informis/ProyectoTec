@@ -1,9 +1,9 @@
 @extends('dashBoard')
     <style>
         .table_categories{
-         border: 1px solid rgba(255, 255, 255, 0);
+        
          border-spacing: 0;
-         margin: auto;
+         width: 100%;
 
             }
         .link_add{
@@ -20,12 +20,18 @@
         th{
             background-color: #00FFFF;
         }
-        th, td{
+        th{
             text-align: center;
             font-size: 18px;
-            width: 25%;
+            width: min-content;
             vertical-align: top;
-            border: 1px solid black;
+            padding: 5px;
+            
+        }
+        td{
+            text-align: center;
+            font-size: 18px;
+            vertical-align: top;
             padding: 5px;
             
         }
@@ -48,12 +54,20 @@
     .item_selected{
         color: rgb(255, 255, 255);
         font-size: 18px;
-       
+        
     }
     .content_bread{
         background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
         margin-bottom: 5px;
+    }
+    
+    .items:hover{
+        background-color: #006EFF;
+        cursor: pointer;
+    }
+    .item_concesionado{
+        background-color: #009CFF;
     }
     </style>
 @section('breadcumb')
@@ -79,34 +93,59 @@
 <table class="table_categories">
 <thead>
 @can('create', App\Models\Producto::class)
-    <tr class="link_add"><td colspan="4"><a href="/dashBoard/productos/create">Proponer producto</a></td></tr>
+    <tr class="link_add"><td colspan="5"><a href="/dashBoard/productos/create">Proponer producto</a></td></tr>
 @endcan
 <th>Producto</th>
 <th>Precio</th>
-<th>Cantidad</th>
+<th style="width: 10px">Cantidad</th>
 <th>Categoria</th>
 <th>Acciones</th>
 </thead>
 <tbody>
     @forelse($producto as $producto)
-        <tr>
-            <td>{{$producto->producto}}</td>
-            <td>{{$producto->precio}}</td>
-            <td>{{$producto->cantidad}}</td>
-            <td>{{$producto->categoria_id}}</td>
-            <td>
-                @can('update', $producto)
-                    <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
-                @endcan
-                <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}">Mostrar</a>
-                @can('delete', $producto)
-                    <form action="/dashBoard/productos/{{$producto->id}}" method="post" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="acciones_links" type="submit">Eliminar</button>
-                    </form>
-                @endcan
-            </td>
+        <tr class="items">
+            <!--if para verificar si esta o no concesionado, si no lo esta pintara la fila de otro color -->
+            @if ($producto->concesionado == 0)
+                <td class="item_concesionado">{{$producto->producto}}</td>
+                <td class="item_concesionado">{{$producto->precio}}</td>
+                <td class="item_concesionado">{{$producto->cantidad}}</td>
+                <td class="item_concesionado">{{$producto->categoria_id}}</td>
+                <td class="item_concesionado">
+                    @can('update', $producto)
+                        <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
+                    @endcan
+                    <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}">Mostrar</a>
+                    @can('concesionar', $producto)
+                    <a class="acciones_links" href="/dashBoard/productos/concesionar/{{$producto->id}}">Concesionar</a>
+                    @endcan
+                    @can('delete', $producto)
+                        <form action="/dashBoard/productos/{{$producto->id}}" method="post" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="acciones_links" type="submit">Eliminar</button>
+                        </form>
+                    @endcan
+                </td>
+            @else
+                <td>{{$producto->producto}}</td>
+                <td>{{$producto->precio}}</td>
+                <td>{{$producto->cantidad}}</td>
+                <td>{{$producto->categoria_id}}</td>
+                <td>
+                    @can('update', $producto)
+                        <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
+                    @endcan
+                    <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}">Mostrar</a>
+                    @can('delete', $producto)
+                        <form action="/dashBoard/productos/{{$producto->id}}" method="post" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="acciones_links" type="submit">Eliminar</button>
+                        </form>
+                    @endcan
+                </td>
+            @endif
+            
         </tr>
     @empty
         <tr>

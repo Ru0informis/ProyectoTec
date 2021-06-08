@@ -4,9 +4,9 @@
 
     <style>
         .table_categories{
-         border: 1px solid rgba(255, 255, 255, 0);
+         
          border-spacing: 0;
-         margin: auto;
+         width: 100%;
 
             }
         .link_add{
@@ -24,12 +24,15 @@
             background-color: #00FFFF;
         }
         th, td{
-            width: max-content;
+            width: min-content;
             text-align: center;
             font-size: 18px;
-            border: 1px solid black;
             padding: 5px;
             
+        }
+        tr:hover{
+            background-color: #006EFF;
+            cursor: pointer;
         }
         .acciones_links{
             background-color: rgba(255, 255, 255, 0);
@@ -56,6 +59,16 @@
         background-color: rgb(134 132 132 / 95%);
         margin-top: 0;
     }
+    #acciones{
+        width: 200px;
+    }
+    .acciones_items{
+        justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
+        width: auto;
+   
+    }
     </style>
 @section('breadcumb')
 <div class="content_bread">
@@ -81,7 +94,7 @@
 <th>Correo</th>
 <th>Rol</th>
 <th>Activo</th>
-<th>Acciones</th>
+<th id="acciones">Acciones</th>
 </thead>
 <tbody>
     @forelse($usuarios as $usuario)
@@ -92,7 +105,7 @@
             <td>{{$usuario->correo}}</td>
             <td>{{$usuario->rol}}</td>
             <td>{{$usuario->activo}}</td>
-            <td>
+            <td class="acciones_items">
                 <a class="acciones_links" href="/Usuarios/{{$usuario->id}}/edit">Editar</a>
                 <a class="acciones_links" href="/Usuarios/{{$usuario->id}}">Mostrar</a>
                 <form action="/Usuarios/{{$usuario->id}}" method="post" style="display: inline;">
