@@ -180,7 +180,8 @@ class productosController extends Controller
         //funcion para retornar la vista donde se realiza la pregunta
         $producto = Producto::find($id);
         $preguntas = DB::table('preguntas')
-                    ->where('usuario_id','=',Auth::user()->id)->get();
+                    ->where('usuario_id','=',Auth::user()->id)
+                    ->where('producto_id','=', $id)->get();
         return view('categorias.eviarPregunta', compact('producto','preguntas'));
     }
     
