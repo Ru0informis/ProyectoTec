@@ -48,7 +48,7 @@
                         <label class="lb_product">Producto: {{ $producto->producto }} </label>
                         <label class="lb_product">Precio:$ {{ $producto->precio }}</label>
                         <label class="lb_description">Descripción: {{ $producto->descripcion }}</label>
-                        <a class="link_product" href="{{ $producto->id }}">Hacer Pregunta</a><br>
+                        <a class="link_product" href="/Categorias/{{ $producto->id }}/preguntar">Hacer Pregunta</a><br>
                         <a class="link_product" href="{{ $producto->id }}">Comprar producto</a>
                     </div>
             @endforeach

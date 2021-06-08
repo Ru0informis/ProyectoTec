@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Pregunta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -174,6 +175,17 @@ class productosController extends Controller
         }
         
     }
+
+    public function preguntar($id){
+        return view('categorias.eviarPregunta');
+    }
     
+    public function enviarPregunta(Request $request){
+        $pregunta=new Pregunta();
+        $enviar=$request->all();
+        $pregunta->fill($enviar);
+        $pregunta->save();
+        return 'Pregunta enviada';  
+    }
 
 }

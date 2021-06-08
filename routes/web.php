@@ -47,8 +47,10 @@ Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
 Route::get('buscarProducto','productosController@buscarProducto');
-Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 
+Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
+//Hacer pregunta
+Route::get('Categorias/{id}/preguntar','productosController@preguntar');
 
 
 //Route::get('/consignar','productosController@consignar')->name('consignar');
