@@ -1,33 +1,6 @@
-@extends('dashBoard')
-@section('breadcumb')
-<style>
-    li{
-        list-style: none;
-    }
-    ul{
-        display: flex;
-        padding: 5px
-    }
-    .item_selected{
-        color: rgb(255, 255, 255);
-        font-size: 18px;
-       
-    }
-    .content_bread{
-        background-color: rgb(134 132 132 / 95%);
-        margin-top: 0;
-        margin-bottom: 5px;
-    }
-</style>
-<div class="content_bread">
-    <ul>
-        <li>Inicio > </li>
-        <li>Categorías > </li>
-        <li class="item_selected">Ver categoría</li>
-    </ul>
-</div>
-@endsection
-@section('show')
+@extends('general')
+
+@section('verProducto')
 <div class="form_search">
     <form action="/buscarProducto">
         Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
@@ -54,4 +27,6 @@
             @endforeach
         @endif    
 </div>
+       
+   
 @endsection

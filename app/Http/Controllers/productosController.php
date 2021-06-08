@@ -58,7 +58,7 @@ class productosController extends Controller
         $valores['imagen'] = $url;
         $valores['usuario_id'] = $usuario_id;
         $valores['categoria_id'] = $categoria_id;
-        $valores['concesionado'] = 1;
+        $valores['concesionado'] = 0;
         $registro = new Producto();
         $registro -> fill($valores);
         //var_dump($valores['categoria']);

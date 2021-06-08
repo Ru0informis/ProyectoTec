@@ -63,8 +63,16 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        $seccion = Categoria::find($id);
-        return view('categorias.show', compact('seccion'));
+        $productos = DB::table('productos')
+                        ->where('concesionado','=',1)
+                        ->where('categoria_id',$id)->get();
+        $categoriaId = $id;
+        
+
+        //$productos = Producto::scopeProductosConcesionados();
+        //echo $productos;
+
+        return view('categorias.show', compact('productos',"categoriaId"));
     }
 
     /**
