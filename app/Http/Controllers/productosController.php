@@ -185,7 +185,7 @@ class productosController extends Controller
         $enviar=$request->all();
         $pregunta->fill($enviar);
         $pregunta->save();
-        return 'Pregunta enviada';  
+        return 'Pregunta enviada'; 
     }
 
 }
