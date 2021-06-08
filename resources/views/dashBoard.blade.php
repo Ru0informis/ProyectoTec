@@ -62,7 +62,7 @@
 </div>
         <div class="content_views">
             @yield('listCategories')
-             
+             @yield('resultadoBusqueda')
              @yield('categoria')
              @yield('usuarios')
              @yield('Tproductos')

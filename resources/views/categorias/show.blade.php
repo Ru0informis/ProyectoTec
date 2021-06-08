@@ -29,7 +29,7 @@
 @endsection
 @section('show')
 <div class="form_search">
-    <form action="/buscarProducto">
+    <form action="/buscar">
         Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
         <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
     </form>
@@ -42,6 +42,7 @@
 
         </div>
         @else
+   
             @foreach ( $productos as $producto )
                     <div class="products_item">
                         <img src="{{ $producto->imagen }}" class="img_product">

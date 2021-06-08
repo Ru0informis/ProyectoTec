@@ -140,6 +140,16 @@ class productosController extends Controller
         
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
     }
+    public function buscar(Request $request){
+        //buscarproductos usuario anonimo
+        $buscarProducto = $request->input('buscarProducto');
+        
+        $busqueda = DB::table('productos')
+                    ->where('concesionado','=',1)
+                    ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
+        
+        return view('categorias.resultadoBusqueda', compact('busqueda'));
+    }
 
     
 
