@@ -51,6 +51,7 @@ Route::get('buscarProducto','productosController@buscarProducto');
 Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 //Hacer pregunta
 Route::get('Categorias/{id}/preguntar','productosController@preguntar');
+Route::post('Categorias/{id}/EnviarPregunta','productosController@enviarPregunta');
 
 
 //Route::get('/consignar','productosController@consignar')->name('consignar');
@@ -58,6 +59,7 @@ Route::get('Categorias/{id}/preguntar','productosController@preguntar');
 /*categorias */
 Route::get('VerCategorias','CategoriasController@verCategorias');
 Route::get('productosByCategorias/{categoria}','CategoriasController@ProductoByCategoria');
+
 
 Route::resource('Categorias','CategoriasController');
 

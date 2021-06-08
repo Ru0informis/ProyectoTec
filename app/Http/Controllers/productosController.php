@@ -177,15 +177,24 @@ class productosController extends Controller
     }
 
     public function preguntar($id){
-        return view('categorias.eviarPregunta');
+        //funcion para retornar la vista donde se realiza la pregunta
+        $producto = Producto::find($id);
+        $preguntas = DB::table('preguntas')
+                    ->where('usuario_id','=',Auth::user()->id)->get();
+        return view('categorias.eviarPregunta', compact('producto','preguntas'));
     }
     
-    public function enviarPregunta(Request $request){
+    public function enviarPregunta(Request $request, $id){
+        //funcion para guardar la regunta
         $pregunta=new Pregunta();
         $enviar=$request->all();
-        $pregunta->fill($enviar);
+        $enviar['id_producto'] = $id;
+        $enviar['id_usuario'] = Auth::user()->id;
+        $pregunta->producto_id=$enviar['id_producto'];
+        $pregunta->pregunta=$enviar['pregunta'];
+        $pregunta->usuario_id=$enviar['id_usuario'];
         $pregunta->save();
-        return 'Pregunta enviada'; 
+        return redirect('/Categorias/'.$id.'/preguntar')-> with('mensaje','Pregunta enviada');  
     }
 
 }

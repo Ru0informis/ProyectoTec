@@ -9,7 +9,7 @@ class Pregunta extends Model
 {
     public $timestamps = false;
 
-    public $fillable = ['producto_id','pregunta', 'usuario_ip',];
+    public $fillable = ['producto_id','pregunta', 'usuario_id'];
 
     use HasFactory;
 }
