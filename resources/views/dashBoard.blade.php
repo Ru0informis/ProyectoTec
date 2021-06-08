@@ -71,6 +71,7 @@
              @yield('show')
              @yield('concesionar')
              @yield('preguntas')
+             @yield('responderPregunta')
 
         </div>
 </div>

@@ -30,7 +30,7 @@
             </div>
             @else
                 <div class="mis_respuesta">
-                    Me: {{$pregunta->respuesta}}
+                    Respuesta: {{$pregunta->respuesta}}
                 </div>
             @endif
         @endforeach

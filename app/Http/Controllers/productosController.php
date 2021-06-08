@@ -184,6 +184,23 @@ class productosController extends Controller
                     ->where('producto_id','=', $id)->get();
         return view('categorias.eviarPregunta', compact('producto','preguntas'));
     }
+
+    public function responder($producto_id){
+        //funcion para retornar la vista donde se realiza la pregunta
+       $preguntas= DB::table('usuarios')
+                    ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id')
+                    ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
+                    ->whereNull('preguntas.respuesta')->get();
+      
+        return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+    }
+    public function enviarRespuesta($id,$producto_id, Request $request){
+        $respuesta = Pregunta::find($id);
+        $respuesta->respuesta= $request->input('respuesta');
+        $respuesta -> save();
+        return redirect('/Productos/'.$producto_id.'/responder')-> with('mensaje','Respuesta enviada');  
+        
+    }
     
     public function enviarPregunta(Request $request, $id){
         //funcion para guardar la pregunta

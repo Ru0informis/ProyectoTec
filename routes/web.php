@@ -53,6 +53,9 @@ Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervi
 Route::get('Categorias/{id}/preguntar','productosController@preguntar');
 Route::post('Categorias/{id}/EnviarPregunta','productosController@enviarPregunta');
 
+Route::get('Productos/{id}/{producto_id}/enviarRespuesta','productosController@enviarRespuesta');
+Route::get('Productos/{id}/responder','productosController@responder');
+
 
 //Route::get('/consignar','productosController@consignar')->name('consignar');
 
