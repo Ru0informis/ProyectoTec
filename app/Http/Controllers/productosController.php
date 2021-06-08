@@ -185,7 +185,7 @@ class productosController extends Controller
     }
     
     public function enviarPregunta(Request $request, $id){
-        //funcion para guardar la regunta
+        //funcion para guardar la pregunta
         $pregunta=new Pregunta();
         $enviar=$request->all();
         $enviar['id_producto'] = $id;

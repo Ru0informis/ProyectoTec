@@ -70,7 +70,7 @@
              @yield('edit')
              @yield('show')
              @yield('concesionar')
-
+             @yield('preguntas')
 
         </div>
 </div>

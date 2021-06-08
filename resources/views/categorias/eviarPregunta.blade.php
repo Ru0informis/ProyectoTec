@@ -1,3 +1,8 @@
+@extends('dashBoard')
+
+@section('preguntas')
+    
+
 @if (session('mensaje'))
 <div>
     {{session('mensaje')}}
@@ -31,3 +36,5 @@
         @endforeach
     </div>
 </div>
+
+@endsection
