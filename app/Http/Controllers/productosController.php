@@ -203,13 +203,24 @@ class productosController extends Controller
     }
 
     public function responder($producto_id){
+        
         //funcion para retornar la vista donde se realiza la pregunta
-       $preguntas= DB::table('usuarios')
-                    ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id')
+        if(Auth::user()->rol=='Cliente'){
+            $preguntas= DB::table('usuarios')
+                ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id','preguntas.respuesta')
+                ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
+                ->whereNull('preguntas.respuesta')
+                ->where('producto_id','=', $producto_id)->get();
+            return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+        }
+        elseif(Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado'){
+            $preguntas= DB::table('usuarios')
+                    ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id','preguntas.respuesta')
                     ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
-                    ->whereNull('preguntas.respuesta')
                     ->where('producto_id','=', $producto_id)->get();
-        return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+            return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+        }
+       
     }
     public function enviarRespuesta($id,$producto_id, Request $request){
         $respuesta = Pregunta::find($id);
