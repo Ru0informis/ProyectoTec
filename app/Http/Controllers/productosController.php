@@ -136,14 +136,20 @@ class productosController extends Controller
     public function buscarProducto(Request $request, $id){
         //buscarproductos usuario anonimo
         $buscarProducto = $request->input('buscarProducto');
-        $busqueda = DB::table('productos')
-                    ->where('concesionado','=',1)
-                    ->where('categoria_id','=',$id)
-                    ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
+       
         
        if(is_null(Auth::user())){
+        $busqueda = DB::table('productos')
+        ->where('concesionado','=',1)
+        ->where('categoria_id','=',$id)
+        ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
        }else{
+        $busqueda = DB::table('productos')
+        ->where('concesionado','=',1)
+        ->where('categoria_id','=',$id)
+        ->where('producto','LIKE', '%'.$buscarProducto.'%')
+        ->where('usuario_id','!=',Auth::user()->id)->get();
         return view('categorias.resultadoBusqueda', compact('busqueda'));
        }
     }
@@ -153,11 +159,18 @@ class productosController extends Controller
     public function buscarProductoSupervisor(Request $request){
        
         $buscarProducto= $request->all();
-        $busqueda2 = DB::table('productos')
-                    ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
-                    ->where('categoria_id',$buscarProducto['categoria'])->get();
-        return view('resultadoBusquedaSupervisor', compact('busqueda2'));
-
+       if(Auth::user()->rol=='Cliente'){
+            $busqueda2 = DB::table('productos')
+            ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
+            ->where('categoria_id',$buscarProducto['categoria'])
+            ->where('usuario_id','=',Auth::user()->id)->get();
+            return view('resultadoBusquedaSupervisor', compact('busqueda2'));
+       }elseif(Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado'){
+            $busqueda2 = DB::table('productos')
+            ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
+            ->where('categoria_id',$buscarProducto['categoria'])->get();
+            return view('resultadoBusquedaSupervisor', compact('busqueda2'));
+       }
         
     }
     public function concesionarView($id){
@@ -192,13 +205,24 @@ class productosController extends Controller
     }
 
     public function responder($producto_id){
+        
         //funcion para retornar la vista donde se realiza la pregunta
-       $preguntas= DB::table('usuarios')
-                    ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id')
+        if(Auth::user()->rol=='Cliente'){
+            $preguntas= DB::table('usuarios')
+                ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id','preguntas.respuesta')
+                ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
+                ->whereNull('preguntas.respuesta')
+                ->where('producto_id','=', $producto_id)->get();
+            return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+        }
+        elseif(Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado'){
+            $preguntas= DB::table('usuarios')
+                    ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id','preguntas.respuesta')
                     ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
-                    ->whereNull('preguntas.respuesta')
                     ->where('producto_id','=', $producto_id)->get();
-        return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+            return view('categorias.responderPregunta', compact('preguntas','producto_id'));
+        }
+       
     }
     public function enviarRespuesta($id,$producto_id, Request $request){
         $respuesta = Pregunta::find($id);
