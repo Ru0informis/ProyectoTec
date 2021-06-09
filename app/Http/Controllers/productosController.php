@@ -134,15 +134,20 @@ class productosController extends Controller
     public function buscarProducto(Request $request, $id){
         //buscarproductos usuario anonimo
         $buscarProducto = $request->input('buscarProducto');
-        $busqueda = DB::table('productos')
-                    ->where('concesionado','=',1)
-                    ->where('categoria_id','=',$id)
-                    ->where('producto','LIKE', '%'.$buscarProducto.'%')
-                    ->where('usuario_id','!=',Auth::user()->id)->get();
+       
         
        if(is_null(Auth::user())){
+        $busqueda = DB::table('productos')
+        ->where('concesionado','=',1)
+        ->where('categoria_id','=',$id)
+        ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
        }else{
+        $busqueda = DB::table('productos')
+        ->where('concesionado','=',1)
+        ->where('categoria_id','=',$id)
+        ->where('producto','LIKE', '%'.$buscarProducto.'%')
+        ->where('usuario_id','!=',Auth::user()->id)->get();
         return view('categorias.resultadoBusqueda', compact('busqueda'));
        }
     }
