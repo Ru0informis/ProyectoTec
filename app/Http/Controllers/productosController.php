@@ -190,8 +190,8 @@ class productosController extends Controller
        $preguntas= DB::table('usuarios')
                     ->select('usuarios.id','usuarios.nombre','preguntas.pregunta','preguntas.id as pregunta_id')
                     ->join('preguntas','usuarios.id','=','preguntas.usuario_id',)
-                    ->whereNull('preguntas.respuesta')->get();
-      
+                    ->whereNull('preguntas.respuesta')
+                    ->where('producto_id','=', $producto_id)->get();
         return view('categorias.responderPregunta', compact('preguntas','producto_id'));
     }
     public function enviarRespuesta($id,$producto_id, Request $request){

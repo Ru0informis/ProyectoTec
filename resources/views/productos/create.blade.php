@@ -44,6 +44,7 @@
         @csrf
         Producto: <input type="text" name="producto">
         Descripción: <textarea name="descripcion" cols="30" rows="10"></textarea>
+        Cantidad: <input type="text" name="cantidad">
         Precio: <input type="text" name="precio"> 
         Imagen: <input type="file" name="imagen">
         Categoría: <select name="categoria">

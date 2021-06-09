@@ -38,9 +38,21 @@
 </style>
 
     <lu id="lu_c">
+        <img src="{{$producto->imagen}}" width="15%">
         <li><label id="lbCategoria">Producto: {{$producto->producto}}</label></li>
         <li><label id="lbCategoria">Cantidad: {{$producto->cantidad}}</label></li>
         <li><label id="lbCategoria">Precio: {{$producto->precio}}</label></li>
+        @if($producto->concesionado==1)
+            <li><label id="lbCategoria">Estado: Aceptado</label></li>
+        @else
+            <li><label id="lbCategoria">Estado: Pendiente</label></li>
+            @if($producto->motivo!=null)
+                <li><label id="lbCategoria">Motivo: {{$producto->motivo}}</label></li>
+            
+            @endif
+        @endif
+        
+
     </lu>
     
     

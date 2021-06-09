@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['producto', 'descripcion', 'precio', 'imagen', 'usuario_id','categoria_id','concesionado'];
+    protected $fillable = ['producto', 'descripcion','cantidad', 'precio', 'imagen', 'usuario_id','categoria_id','concesionado'];
     
     public function scopeProductosConcesionados($query){
         $query-> where('concesionado',1);
