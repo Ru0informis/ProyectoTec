@@ -219,4 +219,15 @@ class productosController extends Controller
         return redirect('/Categorias/'.$id.'/preguntar')-> with('mensaje','Pregunta enviada');  
     }
 
+    public function comprar($id){
+        $producto = Producto::find($id);
+        return view('clientes.compra',compact('producto'));
+    }
+
+    public function realizarcomp(){
+        
+    }
+
+
+
 }

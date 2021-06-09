@@ -72,6 +72,7 @@
              @yield('concesionar')
              @yield('preguntas')
              @yield('responderPregunta')
+             @yield('realizar_compra')
 
         </div>
 </div>
