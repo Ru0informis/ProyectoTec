@@ -45,7 +45,10 @@
                     </center>
                     </li>
                     <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
-                    <li class="navigation_item"><a class="navigation_link" href="/index">Inicio</a></li>
+                    @if ((Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado'))
+                        <li class="navigation_item"><a class="navigation_link" href="/index">Inicio</a></li>
+                    @endif
+                    
                     <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
                     <li class="navigation_item" id="navigation_item_submenu">Productos
                         <ul>
