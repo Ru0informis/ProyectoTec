@@ -137,7 +137,8 @@ class productosController extends Controller
         $busqueda = DB::table('productos')
                     ->where('concesionado','=',1)
                     ->where('categoria_id','=',$id)
-                    ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
+                    ->where('producto','LIKE', '%'.$buscarProducto.'%')
+                    ->where('usuario_id','!=',Auth::user()->id)->get();
         
        if(is_null(Auth::user())){
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
@@ -151,11 +152,18 @@ class productosController extends Controller
     public function buscarProductoSupervisor(Request $request){
        
         $buscarProducto= $request->all();
-        $busqueda2 = DB::table('productos')
-                    ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
-                    ->where('categoria_id',$buscarProducto['categoria'])->get();
-        return view('resultadoBusquedaSupervisor', compact('busqueda2'));
-
+       if(Auth::user()->rol=='Cliente'){
+            $busqueda2 = DB::table('productos')
+            ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
+            ->where('categoria_id',$buscarProducto['categoria'])
+            ->where('usuario_id','=',Auth::user()->id)->get();
+            return view('resultadoBusquedaSupervisor', compact('busqueda2'));
+       }elseif(Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado'){
+            $busqueda2 = DB::table('productos')
+            ->where('producto', 'LIKE', '%'.$buscarProducto['buscarProducto'].'%')
+            ->where('categoria_id',$buscarProducto['categoria'])->get();
+            return view('resultadoBusquedaSupervisor', compact('busqueda2'));
+       }
         
     }
     public function concesionarView($id){
