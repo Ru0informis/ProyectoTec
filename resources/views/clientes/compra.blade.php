@@ -1,12 +1,16 @@
 @extends ('dashBoard')
 
 @section('realizar_compra')
+@if(session('mensaje'))
+{{session('mensaje')}}
+@endif
 
 <form action="/productos/comprar/{{$producto->id}}/{{$producto->cantidad}}" style="margin-left: 10px; margin-top: 20px;" method="POST">
     @csrf
     <b>Producto:</b> {{$producto -> producto}}<br>
     <b>Descripcion:</b> {{$producto -> descripcion}}<br>
     <b>Precio unitario:</b> <label id="precio" style="color: black">{{$producto -> precio}}</label><br>
+    <input type="hidden" name="p" id="p" value="{{$producto -> precio}}">
     <b>Disponibles:</b> <label id="precio" style="color: black">{{$producto -> cantidad}}</label><br>
     <b>Cantidad a comprar:</b> <input name="cantidadP" id = "cantidad" type="number" min="1" max="{{$producto -> cantidad}}" onclick="calcular()" ><br>
     <b>Total:</b>$<label id= "total" style="color: black">0</label><br>

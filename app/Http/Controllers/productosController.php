@@ -9,6 +9,8 @@ use App\Models\Pregunta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Compra;
+
 class productosController extends Controller
 {
      /**
@@ -222,15 +224,42 @@ class productosController extends Controller
     public function comprar($id){
         $producto = Producto::find($id);
         return view('clientes.compra',compact('producto'));
+        
     }
 
     public function realizarcompra(Request $request, $producto_id, $cantidad){
         var_dump($cantidad); echo "<br>";
         var_dump($request->all());
-        //return redirect('/Categorias/'.$id.'/preguntar')-> with('mensaje','Pregunta enviada');
-    }
-    public function compras(){
+        $producto= Producto::find($producto_id);
+        $vendedorid= $producto-> usuario_id;
+        $enviar= $request-> all();
+        $compradorid= Auth::user()->id;
+
+        $pr= $enviar['p'];
+        $cant= $enviar['cantidadP'];
+        $total= $cant * $pr;
+      
+
+        $pregunta= new Compra();
+
+        $pregunta-> comprador_id= $compradorid ;
+        $pregunta-> producto_id= $producto_id ;
+        $pregunta-> vendedor_id= $vendedorid ;
+        $pregunta-> cantidad= $cant;
+        $pregunta-> Total= $total ;
+        $pregunta->save();
+
         
+        $producto-> cantidad = $producto-> cantidad- $cant;
+        $producto ->save(); 
+
+
+        return redirect('/productos/comprar/'.$producto_id.'/')-> with('mensaje','compra registrada, revisar seccion productos/productos comprados, para subir el comprobante de pago ');
+    }
+    public function compras(){  
+        $compra= DB::table('compras')
+            ->select('usuarios.nombre','productos.producto','productos.cantidad','compras.Total','compras.fecha_compra')
+            ->join('')
         return view('clientes.showCompras');
     }
 
