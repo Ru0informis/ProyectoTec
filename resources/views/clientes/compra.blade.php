@@ -2,36 +2,26 @@
 
 @section('realizar_compra')
 
-<form action="">
-
-producto {{$producto -> producto}}
-<br>
-Descripcion {{$producto -> descripcion}}
-<br>
-
-Precio unitario <label id="precio">{{$producto -> precio}}</label>
-<br>
-
-Cantidad a comprar: <input id = "cantidad" type="number" min="0" max="{{$producto -> cantidad}}" onclick="calcular()">
-<br>
-
-total: $
-<label id= "total" style="color: black"> </label>
-<br>
+<form action="/productos/comprar/{{$producto->id}}/{{$producto->cantidad}}" style="margin-left: 10px; margin-top: 20px;" method="POST">
+    @csrf
+    <b>Producto:</b> {{$producto -> producto}}<br>
+    <b>Descripcion:</b> {{$producto -> descripcion}}<br>
+    <b>Precio unitario:</b> <label id="precio" style="color: black">{{$producto -> precio}}</label><br>
+    <b>Disponibles:</b> <label id="precio" style="color: black">{{$producto -> cantidad}}</label><br>
+    <b>Cantidad a comprar:</b> <input name="cantidadP" id = "cantidad" type="number" min="1" max="{{$producto -> cantidad}}" onclick="calcular()" ><br>
+    <b>Total:</b>$<label id= "total" style="color: black">0</label><br>
+    <input type="submit"  value="Realizar compra"> 
+</form>
 <script>
 
-var total=0
-var totalF = document.getElementById('total')
-var cantidad=document.getElementById('cantidad')
-var precio=document.getElementById('precio').innerHTML
+    var total=0
+    var totalF = document.getElementById('total')
+    var cantidad=document.getElementById('cantidad')
+    var precio=document.getElementById('precio').innerHTML
 
-    function calcular(){
-        total= cantidad.value * precio
-   totalF.innerHTML=total
-    }
+        function calcular(){
+            total= cantidad.value * precio
+    totalF.innerHTML=total
+        }
 </script>
-
-<input type="submit"  value="realizarCompra" > 
-</form>
-
 @endsection

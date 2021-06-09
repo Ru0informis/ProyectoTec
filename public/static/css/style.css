@@ -105,6 +105,7 @@ label{
     width: 54%;
     cursor: pointer;
 }
+
 #navigation_item_submenu:hover ul{
     left: 46%;
     font-size: 20px;
@@ -112,6 +113,9 @@ label{
 #navigation_item_submenu:hover li{
     background-color: rgba(174, 0, 255, 0.205);
 }
+
+
+
 .navigation_item:hover{
     background-color: rgba(174, 0, 255, 0.205);
 
