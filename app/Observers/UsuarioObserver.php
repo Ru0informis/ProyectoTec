@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Auth;
 class UsuarioObserver
 {
     protected $usuario = null;
-
+    protected $anonimo =null;
     public function __construct(Request $request)
     {
         $user = Auth::user();
-        $anonimo = $request['nombre'];
+        //$anonimo = $request['nombre'];
         if(is_null($user))
-            $this -> usuario = $anonimo;
+            $this -> anonimo = $request['nombre'];
         else
             $this -> usuario= $user -> nombre;
     }
@@ -29,9 +29,10 @@ class UsuarioObserver
     public function created(Usuario $usuario)
     {
         $user = Auth::user();
+        
         if(is_null($user)){
             $registroA = Bitacora::create([
-                'quien' => $this->usuario,
+                'quien' => $this->anonimo,
                 'accion' =>'Se registro',
                 'que' => $usuario->toJson()
             ]);
@@ -52,11 +53,18 @@ class UsuarioObserver
      */
     public function updated(Usuario $usuario)
     {
-        $registro = Bitacora::create([
-            'quien' => $this->usuario,
-            'accion' =>'Actualizó datos usuario',
-            'que' => $usuario->toJson()
-        ]);
+        
+        $user = Auth::user();
+        if(is_null($user)){
+            
+        }else{
+            $registro = Bitacora::create([
+                'quien' => $this->usuario,
+                'accion' =>'Actualizó datos',
+                'que' => $usuario->toJson()
+            ]);
+        }
+        
     }
 
     /**
