@@ -36,7 +36,7 @@ Route::get('registrar','AutenticarController@registrar');
 Route::get('restorePassword', 'AutenticarController@recuperarContraseña');
 Route::put('updatePassword','AutenticarController@actualizarContraseña');
 
-
+Route::get('dashBoard/productos/compras','productosController@compras');
 Route::get('dashBoard/productos/concesionar/{id}','productosController@concesionarView');
 Route::post('dashBoard/productos/concesionar/{id}/concesionar','productosController@concesionarProducto');
 Route::get('dashBoard/productos','productosController@index');
@@ -48,6 +48,7 @@ Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
 Route::get('buscarProducto/{id}','productosController@buscarProducto');
 
+
 Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 //Hacer pregunta
 Route::get('Categorias/{id}/preguntar','productosController@preguntar');
@@ -56,6 +57,7 @@ Route::post('Categorias/{id}/EnviarPregunta','productosController@enviarPregunta
 Route::get('Productos/{id}/{producto_id}/enviarRespuesta','productosController@enviarRespuesta');
 Route::get('Productos/{id}/responder','productosController@responder');
 Route::get('productos/comprar/{id}','productosController@comprar');
+Route::post('productos/comprar/{id}/{cantidad}','productosController@realizarcompra');
 
 //Route::get('/consignar','productosController@consignar')->name('consignar');
 

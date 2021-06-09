@@ -224,10 +224,15 @@ class productosController extends Controller
         return view('clientes.compra',compact('producto'));
     }
 
-    public function realizarcomp(){
-        
+    public function realizarcompra(Request $request, $producto_id, $cantidad){
+        var_dump($cantidad); echo "<br>";
+        var_dump($request->all());
+        //return redirect('/Categorias/'.$id.'/preguntar')-> with('mensaje','Pregunta enviada');
     }
-
+    public function compras(){
+        
+        return view('clientes.showCompras');
+    }
 
 
 }

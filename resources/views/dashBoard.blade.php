@@ -47,7 +47,12 @@
                     <li class="navigation_item"><a class="navigation_link" href="/Clientes/{{ Auth::user()-> id }}/edit">Actualizar mis datos</a></li>
                     <li class="navigation_item"><a class="navigation_link" href="/index">Inicio</a></li>
                     <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
-                    <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
+                    <li class="navigation_item" id="navigation_item_submenu">Productos
+                        <ul>
+                            <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos venta</a></li>
+                            <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos/compras">Productos comprados</a></li>
+                        </ul>
+                    </li>
                     @can('show', App\Models\Usuario::class)
                     <li class="navigation_item" id="navigation_item_submenu">Usuarios
                         <ul>
@@ -73,6 +78,7 @@
              @yield('preguntas')
              @yield('responderPregunta')
              @yield('realizar_compra')
+             @yield('shomCompras')
 
         </div>
 </div>
