@@ -112,6 +112,9 @@
                 <td class="item_concesionado">{{$producto->categoria_id}}</td>
                 <td class="item_concesionado">
                     @can('update', $producto)
+                   
+
+
                         <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
                     @endcan
                     <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}">Mostrar</a>
@@ -132,9 +135,7 @@
                 <td>{{$producto->cantidad}}</td>
                 <td>{{$producto->categoria_id}}</td>
                 <td>
-                    @can('update', $producto)
-                        <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
-                    @endcan
+                  
                     <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}">Mostrar</a>
                     @can('delete', $producto)
                         <form action="/dashBoard/productos/{{$producto->id}}" method="post" style="display: inline;">
