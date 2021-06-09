@@ -65,7 +65,8 @@ class CategoriasController extends Controller
     {
         $productos = DB::table('productos')
                         ->where('concesionado','=',1)
-                        ->where('categoria_id',$id)->get();
+                        ->where('categoria_id',$id)
+                        ->where('usuario_id','!=', Auth:: user()->id )->get();
         $categoriaId = $id;
         
 
