@@ -139,7 +139,11 @@ class productosController extends Controller
                     ->where('concesionado','=',1)
                     ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         
+       if(is_null(Auth::user())){
         return view('anonimo.resultadoBusqueda', compact('busqueda'));
+       }else{
+        return view('categorias.resultadoBusqueda', compact('busqueda'));
+       }
     }
 
     
