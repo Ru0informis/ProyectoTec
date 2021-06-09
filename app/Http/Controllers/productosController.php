@@ -259,7 +259,7 @@ class productosController extends Controller
     public function compras(){  
         $compra= DB::table('compras')
             ->select('usuarios.nombre','productos.producto','productos.cantidad','compras.Total','compras.fecha_compra')
-            ->join('')
+            ;
         return view('clientes.showCompras');
     }
 
