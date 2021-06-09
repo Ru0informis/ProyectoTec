@@ -46,7 +46,7 @@ Route::put('dashBoard/productos/{producto}','productosController@update');
 Route::get('dashBoard/productos/{producto}','productosController@show');
 Route::delete('dashBoard/productos/{producto}','productosController@destroy');
 Route::get('dashBoard/productos/{producto}/edit','productosController@edit');
-Route::get('buscarProducto','productosController@buscarProducto');
+Route::get('buscarProducto/{id}','productosController@buscarProducto');
 
 Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervisor');
 //Hacer pregunta

@@ -131,12 +131,12 @@ class productosController extends Controller
         return redirect('/dashBoard/productos');
     }
 
-    public function buscarProducto(Request $request){
+    public function buscarProducto(Request $request, $id){
         //buscarproductos usuario anonimo
         $buscarProducto = $request->input('buscarProducto');
-        
         $busqueda = DB::table('productos')
                     ->where('concesionado','=',1)
+                    ->where('categoria_id','=',$id)
                     ->where('producto','LIKE', '%'.$buscarProducto.'%')->get();
         
        if(is_null(Auth::user())){

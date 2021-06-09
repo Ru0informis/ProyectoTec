@@ -29,7 +29,7 @@
 @endsection
 @section('show')
 <div class="form_search">
-    <form action="/buscarProducto">
+    <form action="/buscarProducto/{{$categoriaId}}">
         @csrf
         Buscar: <input type="text" placeholder="Buscar un producto" name="buscarProducto"> 
         <button type="submit"><img src="../static/img/buscar.png" width="20px"></button>
