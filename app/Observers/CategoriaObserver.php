@@ -29,6 +29,7 @@ class CategoriaObserver
     {
         $registro = Bitacora::create([
             'quien'=>$this->usuario,
+            'usuario_id'=>'4',
             'accion'=>'Agrego categoría',
             'que'=>$categoria->toJson()
         ]);
@@ -44,6 +45,7 @@ class CategoriaObserver
     {
         $registro = Bitacora::create([
             'quien'=>$this->usuario,
+            'usuario_id'=>'4',
             'accion'=>'Actualizó categoría',
             'que'=>$categoria->toJson()
         ]);
@@ -59,6 +61,7 @@ class CategoriaObserver
     {
         $registro = Bitacora::create([
             'quien' => $this->usuario,
+            'usuario_id'=>'4',
             'accion' =>'Elimino categoría',
             'que' => $categoria->toJson()
         ]);
