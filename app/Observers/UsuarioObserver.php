@@ -62,6 +62,7 @@ class UsuarioObserver
         }else{
             $registro = Bitacora::create([
                 'quien' => $this->usuario,
+                'usuario_id'=>$usuario->id,
                 'accion' =>'Actualizó datos',
                 'que' => $usuario->toJson()
             ]);
@@ -79,6 +80,7 @@ class UsuarioObserver
     {
         $registro = Bitacora::create([
             'quien' => $this->usuario,
+            'usuario_id'=>$usuario->id,
             'accion' =>'Eliminó datos usuario',
             'que' => $usuario->toJson()
         ]);
