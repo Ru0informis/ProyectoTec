@@ -147,6 +147,9 @@
                     @if (Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado')
                         <a class="acciones_links" href="/Productos/{{$producto->id}}/kardex">Kardex</a>
                     @endif
+                    @if (Auth::user()->rol=='Cliente')
+                        <a class="acciones_links" href="/Productos/{{$producto->id}}/responder">Preguntas</a>
+                    @endif
                     
                     
                     
