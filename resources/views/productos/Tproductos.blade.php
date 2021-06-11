@@ -144,7 +144,11 @@
                             <button class="acciones_links" type="submit">Eliminar</button>
                         </form>
                     @endcan
-                    <a class="acciones_links" href="/Productos/{{$producto->id}}/responder">Preguntas</a>
+                    @if ((Auth::user()->rol=='Cliente'))
+                        <a class="acciones_links" href="/Productos/{{$producto->id}}/responder">Preguntas</a>
+                    @endif
+                    
+                    
                 </td>
             @endif
             
