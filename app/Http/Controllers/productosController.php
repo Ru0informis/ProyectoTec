@@ -330,5 +330,5 @@ return view('recibo');
       
     }
 
-
+    
 }

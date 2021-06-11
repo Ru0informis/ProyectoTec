@@ -144,7 +144,10 @@
                             <button class="acciones_links" type="submit">Eliminar</button>
                         </form>
                     @endcan
-                    <a class="acciones_links" href="/Productos/{{$producto->id}}/kardex">Kardex</a>
+                    @if (Auth::user()->rol=='Supervisor' || Auth::user()->rol=='Encargado')
+                        <a class="acciones_links" href="/Productos/{{$producto->id}}/kardex">Kardex</a>
+                    @endif
+                    
                     
                     
                 </td>
