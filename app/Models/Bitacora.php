@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bitacora extends Model
 {
-    protected $fillable = ['quien','accion','que'];
+    protected $fillable = ['quien','usuario_id','accion','que'];
     public $timestamps = false;
     use HasFactory;
 }

@@ -33,12 +33,14 @@ class UsuarioObserver
         if(is_null($user)){
             $registroA = Bitacora::create([
                 'quien' => $this->anonimo,
-                'accion' =>'Se registro',
+                'usuario_id'=>$usuario->id,
+                'accion' =>'Se registro',    
                 'que' => $usuario->toJson()
             ]);
         }else{
             $registro = Bitacora::create([
                 'quien' => $this->usuario,
+                'usuario_id'=>$usuario->id,
                 'accion' =>'Creo usuario',
                 'que' => $usuario->toJson()
             ]);
