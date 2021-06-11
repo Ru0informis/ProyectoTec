@@ -83,6 +83,7 @@
              @yield('realizar_compra')
              @yield('shomCompras')
              @yield('recibo')
+             @yield('kardex')
 
         </div>
 </div>
