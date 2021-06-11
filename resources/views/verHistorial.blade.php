@@ -5,7 +5,7 @@
     @foreach ($historial as $historial )
         @if ($i==0)
             Fecha de registro del vendedor: {{$historial->cuando}} <br>
-            productos vendidos: <br>
+            productos vendidos: <br><br>
         @endif
         
          {{$historial->producto}} <br>
