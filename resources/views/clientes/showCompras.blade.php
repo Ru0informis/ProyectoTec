@@ -28,7 +28,7 @@
         <b>Fecha de compra:</b><label class="lb_compra"> {{$compra->fecha_compra}} </label>
         @if ($compra->estado==0)
             <b>Estado de la compra:</b><label class="lb_compra">Pendiente</label>
-            <a href="">comprobante de pago</a>
+            <a href="/dashBoard/productos/compras/{{$compra->id}}">comprobante de pago</a>
         @else
         <b>Estado de la compra</b><label class="lb_compra">Compra realizada</label>
         @endif

@@ -4,6 +4,9 @@ use App\Models\Categoria;
 use App\Models\Usuario;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
+use App\Mail\MensajeRecieved;
+use Illuminate\Support\Facades\Mail;
+
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -72,3 +75,7 @@ Route::get('showHistory/{id}','UsuariosController@showHistory');
 Route::resource('Usuarios', 'UsuariosController');
 Route::get('historialUsuarios','UsuariosController@historial');
 Route::resource('Clientes', 'ClientesController');
+
+Route::get('dashBoard/productos/compras/{id}','productosController@confirmarComp');
+Route::get('dashBoard/productos/compras/{id}','productosController@añadircomp');
+

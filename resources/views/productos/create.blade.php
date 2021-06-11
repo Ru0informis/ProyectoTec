@@ -53,6 +53,7 @@
                          <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                     @endforeach
                 </select> 
+        Numero de cuenta: <input type="number" name="no_cuenta">
         <input type="submit" value="Crear">
     </form>
 @endsection

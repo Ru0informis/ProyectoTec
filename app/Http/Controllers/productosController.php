@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Compra;
 
+use App\Mail\MensajeRecieved;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Mail;
+
 class productosController extends Controller
 {
      /**
@@ -277,6 +281,13 @@ class productosController extends Controller
         $producto-> cantidad = $producto-> cantidad- $cant;
         $producto ->save(); 
 
+        $emailvend= Usuario::find($vendedorid);
+
+
+        $correo = new MensajeRecieved;
+
+        Mail::to($emailvend -> correo)-> send($correo);
+       
 
         return redirect('/productos/comprar/'.$producto_id.'/')-> with('mensaje','compra registrada, revisar seccion productos/productos comprados, para subir el comprobante de pago ');
     }
@@ -284,6 +295,32 @@ class productosController extends Controller
         $usuario_id = Auth::user()->id;
         $compra= DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE usuarios.id=compras.vendedor_id) AS "Vendedor", (SELECT nombre FROM usuarios WHERE usuarios.id=compras.comprador_id)AS "Comprador", (SELECT producto FROM productos WHERE productos.id=compras.producto_id) AS "producto" , compras.cantidad, compras.Total, compras.fecha_compra, compras.estado FROM compras INNER JOIN usuarios on compras.comprador_id = '.$usuario_id.'');
         return view('clientes.showCompras',compact('compra'));
+    }
+
+    public function confirmarComp($id){
+return view('recibo');
+    }
+
+    public function añadirComp(Request $request, $id){
+        $registro = Compra::find($id);
+
+        $valores = $request ->all(); //recupero todos los datos del formulario
+        $img = $request -> file('imagen');
+        if(!is_null($img) ){
+            $imagen = $request -> file('imagen')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
+            $url_replace = str_replace('storage','public', $registro->imagen); //reemplazo la url para eliminar del storage
+            $url_N= Storage::url($imagen); //almaceno la nueva imagen en el storage
+            Storage::delete($url_replace);
+            $url = Storage::url($imagen);
+            $valores['imagen'] = $url;
+        }
+        $registro ->fill($valores);
+        $registro ->save();
+        return redirect('/dashBoard/productos');
+
+
+
+      
     }
 
 
