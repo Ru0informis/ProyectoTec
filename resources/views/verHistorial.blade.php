@@ -1,14 +1,18 @@
 @extends('bitacora')
 
 @section('verHistorial')
+<?php $i=0; ?>
     @foreach ($historial as $historial )
-        @if ($historial->accion =="Se registro")
-            Fecha de registro: {{$historial->cuando}}
-        @else
-            
-        @endif
+    
+    @if ($i==0)
+    
+    Fecha de registro del vendedor: {{$historial->cuando}}
+
+    @endif
+        
+        productos vendidos: {{$historial->producto}}
+
     @endforeach
-    <br> Transacciones hechas: 0 <br>
-    Productos a la venta: 0
+    
 
 @endsection

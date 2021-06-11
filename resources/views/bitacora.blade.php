@@ -50,7 +50,7 @@
             <div class="user">
                 <img src="{{ $usuario->imagen }}" width="25%">
                 <div class="user_info">
-                    <a href="/showHistory/{{$usuario->nombre}}" class="lb_users">{{$usuario->nombre." ".$usuario->a_paterno." ".$usuario->a_materno}}</a>
+                    <a href="/showHistory/{{$usuario->nombre}}/{{$usuario->id}}" class="lb_users">{{$usuario->nombre." ".$usuario->a_paterno." ".$usuario->a_materno}}</a>
                     <label class="lb">Rol: {{ $usuario->rol }}</label>
                 </div>
             </div>

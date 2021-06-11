@@ -136,9 +136,8 @@ class UsuariosController extends Controller
         $usuarios = Usuario::all();
         return view('bitacora', compact('usuarios'));
     }
-    public function showHistory($nombre){
-        $historial = DB::table('bitacoras')
-                    ->where('quien',$nombre)->get();
+    public function showHistory($nombre, $id){
+        $historial = DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE compras.vendedor_id=usuarios.id) AS "Vendedor", (SELECT producto FROM productos WHERE compras.producto_id=productos.id) AS "producto", (SELECT cuando FROM bitacoras WHERE bitacoras.usuario_id=compras.vendedor_id) AS "cuando" FROM compras INNER JOIN productos INNER JOIN usuarios WHERE compras.vendedor_id='.$id.'');
                     $usuarios = Usuario::all();
         return view('verHistorial', compact('usuarios','historial'));
     }

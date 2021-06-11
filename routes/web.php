@@ -71,7 +71,7 @@ Route::get('productosByCategorias/{categoria}','CategoriasController@ProductoByC
 
 Route::resource('Categorias','CategoriasController');
 
-Route::get('showHistory/{id}','UsuariosController@showHistory');
+Route::get('showHistory/{id}/{usuario}','UsuariosController@showHistory');
 Route::resource('Usuarios', 'UsuariosController');
 Route::get('historialUsuarios','UsuariosController@historial');
 Route::resource('Clientes', 'ClientesController');
