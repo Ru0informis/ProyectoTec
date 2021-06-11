@@ -3,8 +3,8 @@
 
 <center>
 <h3> FAVOR DE AÑADIR EL COMPROBANTE</h3>
-<form action="/dashBoard/productos/compras/{{$compra->id}}"   method="get">
-
+<form action="/dashBoard/productos/compras/{{$id}}"   method="post">
+    @csrf
     <input type="file">
     <br>
     <input class="btn" type="submit" value="Enviar comprobante">

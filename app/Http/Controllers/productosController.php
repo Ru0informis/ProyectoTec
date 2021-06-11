@@ -305,7 +305,7 @@ class productosController extends Controller
     }
 
     public function confirmarComp($id){
-return view('recibo');
+return view('recibo', compact('id'));
     }
 
     public function añadirComp(Request $request, $id){
