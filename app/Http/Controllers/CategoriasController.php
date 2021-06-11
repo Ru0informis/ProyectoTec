@@ -100,11 +100,9 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
         $categoria->nombre = $request->input('nombre');
         $categoria->descripcion = $request->input('descripcion');
-     
+        $valores = $request ->all();
         $img = $request -> file('imagen');
-       
-
-        if(!is_null($img) ){
+        if(!is_null($img)){
             $imagen = $request -> file('imagen')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
             $url_replace = str_replace('storage','public', $categoria->imagen); //reemplazo la url para eliminar del storage
             $url_N= Storage::url($imagen); //almaceno la nueva imagen en el storage
@@ -115,6 +113,7 @@ class CategoriasController extends Controller
 
         //$categoria->imagen = "";
         $categoria->activa = 1;
+        $categoria ->fill($valores);
         $categoria->save();
         //$seccion = $request->input('seccion');
         //Categoria::editar($id, $seccion);
