@@ -64,12 +64,18 @@
                         <li class="navigation_item"><a class="navigation_link" href="/index">Inicio</a></li>
                     @endif
                         <li class="navigation_item"><a class="navigation_link" href="/Categorias">Categorias</a></li>
+                        @can('comprasVerCompras', App\Models\Producto::class)
                         <li class="navigation_item" id="navigation_item_submenu">Productos
                             <ul>
                                 <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos en venta</a></li>
                                 <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos/compras">Productos comprados</a></li>
                             </ul>
                         </li>
+                       
+                        @endcan
+                        @can('show', App\Models\Producto::class)
+                        <li class="navigation_item"><a class="navigation_link" href="/dashBoard/productos">Productos</a></li>
+                        @endcan
                         @can('show', App\Models\Usuario::class)
                         <li class="navigation_item" id="navigation_item_submenu">Usuarios
                             <ul>

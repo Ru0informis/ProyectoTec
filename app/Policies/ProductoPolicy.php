@@ -99,4 +99,10 @@ class ProductoPolicy
     {
         //
     }
+    public function comprasVerCompras(Usuario $usuario){
+        if($usuario->rol == 'Cliente') return true;
+    }
+    public function show(Usuario $usuario){
+        if($usuario->rol == 'Supervisor' || $usuario->rol == 'Encargado') return true;
+    }
 }

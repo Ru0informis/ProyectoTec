@@ -281,10 +281,9 @@ class productosController extends Controller
         return redirect('/productos/comprar/'.$producto_id.'/')-> with('mensaje','compra registrada, revisar seccion productos/productos comprados, para subir el comprobante de pago ');
     }
     public function compras(){  
-        $compra= DB::table('compras')
-            ->select('usuarios.nombre','productos.producto','productos.cantidad','compras.Total','compras.fecha_compra')
-            ;
-        return view('clientes.showCompras');
+        $usuario_id = Auth::user()->id;
+        $compra= DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE usuarios.id=compras.vendedor_id) AS "Vendedor", (SELECT nombre FROM usuarios WHERE usuarios.id=compras.comprador_id)AS "Comprador", (SELECT producto FROM productos WHERE productos.id=compras.producto_id) AS "producto" , compras.cantidad, compras.Total, compras.fecha_compra, compras.estado FROM compras INNER JOIN usuarios on compras.comprador_id = '.$usuario_id.'');
+        return view('clientes.showCompras',compact('compra'));
     }
 
 
