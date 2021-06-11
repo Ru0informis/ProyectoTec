@@ -82,6 +82,7 @@
              @yield('responderPregunta')
              @yield('realizar_compra')
              @yield('shomCompras')
+             @yield('kardex')
 
         </div>
 </div>

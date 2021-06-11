@@ -285,6 +285,13 @@ class productosController extends Controller
         $compra= DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE usuarios.id=compras.vendedor_id) AS "Vendedor", (SELECT nombre FROM usuarios WHERE usuarios.id=compras.comprador_id)AS "Comprador", (SELECT producto FROM productos WHERE productos.id=compras.producto_id) AS "producto" , compras.cantidad, compras.Total, compras.fecha_compra, compras.estado FROM compras INNER JOIN usuarios on compras.comprador_id = '.$usuario_id.'');
         return view('clientes.showCompras',compact('compra'));
     }
+    public function kardex($id){
+        $producto = Producto::find($id);
+        $historialProducto = DB::select('SELECT DISTINCT preguntas.producto_id, preguntas.pregunta, preguntas.respuesta, usuarios.nombre AS "comprador", (SELECT nombre FROM usuarios WHERE usuarios.id=productos.usuario_id)AS "vendedor" FROM usuarios INNER JOIN preguntas ON preguntas.usuario_id=usuarios.id INNER JOIN productos on '.$id.'=preguntas.producto_id');
+        $historialProductoCompra = DB::select('SELECT fecha_compra, (SELECT nombre FROM usuarios WHERE compras.comprador_id=usuarios.id) AS "comprador" , (SELECT nombre FROM usuarios WHERE compras.vendedor_id=usuarios.id) AS "vendedor", cantidad, Total FROM compras WHERE compras.producto_id = '.$id.' AND estado="0"');
+
+        return view('productos.kardex', compact('historialProducto', 'historialProductoCompra','producto'));
+    }
 
 
 }

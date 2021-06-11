@@ -53,7 +53,7 @@ Route::get('buscarProductoSupervisor','productosController@buscarProductoSupervi
 //Hacer pregunta
 Route::get('Categorias/{id}/preguntar','productosController@preguntar');
 Route::post('Categorias/{id}/EnviarPregunta','productosController@enviarPregunta');
-
+Route::get('Productos/{id}/kardex','productosController@kardex');
 Route::get('Productos/{id}/{producto_id}/enviarRespuesta','productosController@enviarRespuesta');
 Route::get('Productos/{id}/responder','productosController@responder');
 Route::get('productos/comprar/{id}','productosController@comprar');
