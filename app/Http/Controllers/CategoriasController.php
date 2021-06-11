@@ -100,6 +100,19 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
         $categoria->nombre = $request->input('nombre');
         $categoria->descripcion = $request->input('descripcion');
+     
+        $img = $request -> file('imagen');
+       
+
+        if(!is_null($img) ){
+            $imagen = $request -> file('imagen')-> store('public/imagenes'); //obtengo la imagen del input y la guardi en el storage
+            $url_replace = str_replace('storage','public', $categoria->imagen); //reemplazo la url para eliminar del storage
+            $url_N= Storage::url($imagen); //almaceno la nueva imagen en el storage
+            Storage::delete($url_replace);
+            $url = Storage::url($imagen);
+            $valores['imagen'] = $url;
+        }
+
         //$categoria->imagen = "";
         $categoria->activa = 1;
         $categoria->save();

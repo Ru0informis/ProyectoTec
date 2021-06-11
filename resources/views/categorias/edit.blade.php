@@ -38,11 +38,12 @@
         padding: 5px;
     }
 </style>
-<form class="form_edit" action="/Categorias/{{$categoria->id}}" method="post">
+<form class="form_edit" action="/Categorias/{{$categoria->id}}" method="post"  enctype="multipart/form-data">
         @csrf
         @method('PUT')
         Categoria: <input class="form_edit_input" type="text" name="nombre" value="{{$categoria->nombre}}"> <br><br>
-        Categoria: <textarea name="descripcion" value="{{$categoria->descripcion}}"> {{$categoria->descripcion}}</textarea>
+        Descripcion: <textarea name="descripcion" value="{{$categoria->descripcion}}"> {{$categoria->descripcion}}</textarea>
+        imagen: <input type="file" name="imagen" value="{{$categoria->imagen}}"> <br><br>
         <input class="form_edit_input" type="submit" value="enviar">
     </form>
 
