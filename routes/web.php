@@ -77,5 +77,6 @@ Route::get('historialUsuarios','UsuariosController@historial');
 Route::resource('Clientes', 'ClientesController');
 
 Route::get('dashBoard/productos/compras/{id}','productosController@confirmarComp');
-Route::post('dashBoard/productos/compras/{id}','productosController@añadircomp');
+Route::post('dashBoard/productos/compras/{id}/','productosController@añadircomp');
+Route::post('dashBoard/productos/compras/{id}/calificar','productosController@calificar');
 

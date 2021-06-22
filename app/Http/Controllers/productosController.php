@@ -292,8 +292,9 @@ class productosController extends Controller
         return redirect('/productos/comprar/'.$producto_id.'/')-> with('mensaje','compra registrada, revisar seccion productos/productos comprados, para subir el comprobante de pago ');
     }
     public function compras(){  
+        //metodo para ver las compras de un usuario x
         $usuario_id = Auth::user()->id;
-        $compra= DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE usuarios.id=compras.vendedor_id) AS "Vendedor", (SELECT nombre FROM usuarios WHERE usuarios.id=compras.comprador_id)AS "Comprador", (SELECT producto FROM productos WHERE productos.id=compras.producto_id) AS "producto" , compras.cantidad, compras.Total, compras.fecha_compra, compras.estado FROM compras INNER JOIN usuarios on compras.comprador_id = '.$usuario_id.'');
+        $compra= DB::select('SELECT DISTINCT compras.id, (SELECT nombre FROM usuarios WHERE usuarios.id=compras.vendedor_id) AS "Vendedor", (SELECT nombre FROM usuarios WHERE usuarios.id=compras.comprador_id)AS "Comprador", (SELECT producto FROM productos WHERE productos.id=compras.producto_id) AS "producto" , compras.cantidad, compras.Total, compras.fecha_compra, compras.estado, compras.calificacion, compras.comprobante FROM compras INNER JOIN usuarios on compras.comprador_id = '.$usuario_id.'');
         return view('clientes.showCompras',compact('compra'));
     }
     public function kardex($id){
@@ -310,7 +311,6 @@ return view('recibo', compact('id'));
 
     public function añadirComp(Request $request, $id){
         $registro = Compra::find($id);
-
         $valores = $request ->all(); //recupero todos los datos del formulario
         $img = $request -> file('imagen');
         if(!is_null($img) ){
@@ -321,13 +321,18 @@ return view('recibo', compact('id'));
             $url = Storage::url($imagen);
             $valores['imagen'] = $url;
         }
-        $registro ->fill($valores);
+        $registro ->comprobante= $valores['imagen'];
         $registro ->save();
-        return redirect('/dashBoard/productos');
-
-
-
-      
+        return redirect('/dashBoard/productos/compras')-> with('mensaje','Comprobante enviado');
+        
+    }
+    public function calificar(Request $request, $id){
+            $registro = Compra::find($id);
+            $valores= $request->all();
+            $registro ->calificacion= $valores['calificacion'];
+            $registro ->save();
+            return redirect('/dashBoard/productos/compras')-> with('mensaje','gracias por su calificación.');
+        
     }
 
     
