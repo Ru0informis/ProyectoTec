@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Categoria;
+use App\Models\Compra;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CategoriaPolicy
+class ComprasPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class CategoriaPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\Usuario  $usuario
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Compra  $compra
      * @return mixed
      */
-    public function view(Usuario $usuario, Categoria $categoria)
+    public function view(Usuario $usuario, Compra $compra)
     {
         //
     }
@@ -41,44 +41,41 @@ class CategoriaPolicy
      */
     public function create(Usuario $usuario)
     {
-        if($usuario->rol == "Cliente") return false;
-        if($usuario->rol == "Supervisor") return true;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\Usuario  $usuario
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Compra  $compra
      * @return mixed
      */
-    public function update(Usuario $usuario, Categoria $categoria)
+    public function update(Usuario $usuario, Compra $compra)
     {
-        if($usuario->rol == "Cliente") return false;
-        if($usuario->rol == "Supervisor") return true;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\Usuario  $usuario
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Compra  $compra
      * @return mixed
      */
-    public function delete(Usuario $usuario, Categoria $categoria)
+    public function delete(Usuario $usuario, Compra $compra)
     {
-        if($usuario->rol == "Cliente") return false;
-        if($usuario->rol == "Supervisor") return true;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\Usuario  $usuario
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Compra  $compra
      * @return mixed
      */
-    public function restore(Usuario $usuario, Categoria $categoria)
+    public function restore(Usuario $usuario, Compra $compra)
     {
         //
     }
@@ -87,12 +84,14 @@ class CategoriaPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\Usuario  $usuario
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Compra  $compra
      * @return mixed
      */
-    public function forceDelete(Usuario $usuario, Categoria $categoria)
+    public function forceDelete(Usuario $usuario, Compra $compra)
     {
         //
     }
-    
+    public function pagos(Usuario $usuario){
+        if($usuario->rol == "Contador") return true;
+    }
 }

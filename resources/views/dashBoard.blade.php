@@ -70,6 +70,14 @@
                         </ul>
                     </li>
                     @endcan
+                    @can('pagos', App\Models\Compra::class)
+                            <li class="navigation_item">Ventas
+                                <ul>
+                                    <a class="navigation_link" href="/Compras">->Validar venta</a>
+                                    <a class="navigation_link" href="/Compras/Pagos">->Realizar pago</a>
+                                </ul>    
+                            </li> 
+                        @endcan
                     <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
             </ul>
 </div>

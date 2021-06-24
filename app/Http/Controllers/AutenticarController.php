@@ -34,6 +34,9 @@ class AutenticarController extends Controller
                 }elseif(Hash::check($password, $user->password) & $user->rol == "Encargado"){
                     Auth::login($user);
                     return redirect('/');
+                }elseif(Hash::check($password, $user->password) & $user->rol == "Contador"){
+                    Auth::login($user);
+                    return redirect('/');
                 }else{
                     return redirect('/autenticar') ->with('error','Datos incorrectos!');
                 }

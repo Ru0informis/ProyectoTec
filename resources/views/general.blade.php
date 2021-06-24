@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('static/css/style.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>Bienvenido</title>
 </head>
 <body >
@@ -84,6 +85,14 @@
                                 </ul>
                             </li>
                         @endcan
+                        @can('pagos', App\Models\Compra::class)
+                            <li class="navigation_item">Ventas
+                                <ul>
+                                    <a class="navigation_link" href="/Compras">->Validar venta</a>
+                                    <a class="navigation_link" href="/Compras/Pagos">->Realizar pago</a>
+                                </ul>    
+                            </li> 
+                        @endcan
                         <li class="navigation_item"><a class="navigation_link" href="/salir">Salir</a></li>    
                 </ul>
         </div>
@@ -92,6 +101,9 @@
         @yield('estadisticas')
         @yield('resultadoBusquedaSupervisor')
         @yield('bitacoras')
+        @yield('compras')
+        @yield('pagos')
+        @yield('create_pago')
     </div>
 @endguest  
 <script>

@@ -112,7 +112,6 @@
                 <td class="item_concesionado">{{$producto->categoria_id}}</td>
                 <td class="item_concesionado">
                     @can('update', $producto)
-                   
 
 
                         <a class="acciones_links" href="/dashBoard/productos/{{$producto->id}}/edit">Editar</a>
