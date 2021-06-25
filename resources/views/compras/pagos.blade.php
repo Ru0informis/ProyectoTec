@@ -69,6 +69,10 @@
         width: auto;
    
     }
+input[type="checkbox"]:checked,:disabled {
+  box-shadow: 0 0 0 3px orange;
+}
+
     </style>
 @section('pagos')
    
@@ -77,35 +81,64 @@
     {{session('mensaje')}}
 </div>
 @endif
+
 <table class="table_categories">
 <thead>
 <tr class="link_add"><td colspan="8"><a href="/Compras/Pagos/Create">Agregar pago</a></td></tr>
 <th>ID</th>
 <th>Vendedor</th>
 <th>Notas</th>
+<th>Estado del pago</th>
 <th>Fecha de pago</th>
 <th>Monto</th>
 </thead>
 <tbody>
-   @forelse ($pagos as $pago)
-    <tr id="{{ $pagos->id }}" >
-                
-        <td>{{$pago->id}}</td>
+   @foreach ($pagos as $pago)
+    <tr>
+
+        @if ($pago->estado_pago == 2)
+        <td><input type="checkbox" name="estado" checked id="{{$pago->id}}" onclick="updateStatus(this.id)"  style="cursor: pointer; "> {{$pago->id}}</td>
+        @else
+        <td><input type="checkbox" name="estado" id="{{$pago->id}}" onclick="updateStatus(this.id)"  style="cursor: pointer; "> {{$pago->id}}</td>
+        @endif
         <td>{{$pago->vendedor}}</td>
-        @if ($pago->notas == "")
-        <td>----</td>
+        <td>{{$pago->notas}}</td>
+        @if ($pago->estado_pago == 0)
+        <td id="estado">Pendiente</td>
+        @endif
+        @if ($pago->estado_pago == 1)
+        <td id="estado">Creado</td>
+        @endif
+        @if ($pago->estado_pago == 2)
+        <td id="estado">Entregado</td>
         @endif
         <td>{{$pago->fecha_pago}}</td>
         <td>${{$pago->monto}}</td>
+        
 
     </tr>
-   @empty
-   <tr>
-        
-    <td colspan="4">sin registros</td>
-    </tr>
-   @endforelse 
+   
+   @endforeach 
 </tbody>
 </table>
-
+<script>
+    function updateStatus(id){
+        var status = document.getElementById('estado')
+             $(document).ready(function(){
+        $.ajax({
+                url: '/Compras/updateStatusPago/'+id+'',
+                method: 'GET',
+                data: {
+                    pago_id: id
+                }
+            }).done(function(res){
+                var response = JSON.parse(res)
+                alert(response.message)
+                status.innerText = "Entregado   "
+            });
+        
+    });
+        }
+   
+</script>
 @endsection

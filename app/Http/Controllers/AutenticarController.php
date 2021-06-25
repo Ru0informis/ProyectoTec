@@ -47,6 +47,19 @@ class AutenticarController extends Controller
 
         
     }
+    public function validarEmail(Request $request){
+        $email = $request['email'];
+        $emailRegistrado = DB::table('usuarios')
+                        ->select('correo')
+                        ->where('correo','=',$email)->get();
+        if(count($emailRegistrado) >= 1)
+            return json_encode('El email ingresado ya existe');
+        else
+            return json_encode('Email ingresado disponible');
+
+        
+    }
+
     public function registrar()
     {
         return view('anonimo.registro');

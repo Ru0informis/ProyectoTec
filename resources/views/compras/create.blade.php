@@ -96,7 +96,12 @@ ul{
 </tbody>
 </table>
 <label id="total"></label>
-<form>  <button id="btnEnviar">Enviar</button></form>
+<form>  <br><br>
+    <b>Ingrese la fecha del pago: </b><input type="date" id="fecha" name="bday" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"><br>
+    <small><b>Nota: llenar este campo en caso de realizar un descuento en el total a pagar, por ejemplo "DESCONTAR 200 DE FLETES"</b></small> <br><br>
+    <textarea name="" id="notas" cols="30" rows="10"placeholder="ingrese una nota" style="resize: none;"></textarea><br><br>
+    <button id="btnEnviar">Enviar</button>
+</form>
 <script>
     $(document).ready(function() {
         var id_vendedor
@@ -117,7 +122,7 @@ ul{
                 console.log(response)    
                 for(var i = 0; i<response.length; i++){
                     total_pagar += response[i].Total
-                    var venta = "<tr><td>"+ response[i].producto+"</td>"
+                    var venta = "<tr id='a'><td>"+ response[i].producto+"</td>"
                     venta += "<td>"+ response[i].fecha_compra+"</td>"
                     venta += "<td>"+ response[i].cantidad+"</td>"
                     venta += "<td>$"+ response[i].Total+"</td></tr>"
@@ -133,13 +138,18 @@ ul{
         $("#btnEnviar").click(function(e){
             e.preventDefault()
             var _token = $("input[name='_token']").val();
+            var notas = document.getElementById('notas').value
+            var fecha = document.getElementById('fecha').value
+            console.log(notas)
             $.ajax({
                     url: '/Compras/'+id_vendedor+'',
                     method:'PUT',
-                    data: {_token:_token,id_vendedor:id_vendedor, monto:total, estado:1}
+                    data: {_token:_token,id_vendedor:id_vendedor, monto:total, estado:1, notas:notas, fecha_pago: fecha}
                 }).done(function(res){
                     response = JSON.parse(res);
                     alert(response.message);
+                    document.getElementById('tBody').innerText=""
+                    document.getElementById('total').innerText="$0.00"
                 });
         });
     });

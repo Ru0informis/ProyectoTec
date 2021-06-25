@@ -81,11 +81,28 @@ class ComprasController extends Controller
     public function update(Request $request, $id)
     {
         $monto =$request['monto'];
-        $pago = DB::select('UPDATE pagos SET monto= '.$monto.', estado_pago= 1 WHERE vendedor_id='.$id.'');
+        $fecha =$request['fecha_pago'];
+        $notas =strval($request['notas']);
+       // $pago = DB::select('UPDATE pagos SET notas='.$notas.',monto='.$monto.' ,estado_pago=1 WHERE vendedor_id='.$id.'');
+        $regPasgo = DB::table('pagos')
+                    ->where('vendedor_id',$id)
+                    ->update([
+                        'notas' => $notas,
+                        'monto' => $monto,
+                        'estado_pago' => 1,
+                        'fecha_pago' => $fecha,
+                    ]);
         $message =['message'=>'Pago registrado exitosamente'];
         return response(json_encode($message), 200)->header('Content-type','text/plain');
     }
-
+    public function updateStatusPago(Request $request, $id){
+        $pago_id = $request['pago_id'];
+        $updateStatus = DB::table('pagos')
+                        ->where('id', $pago_id)
+                        ->update(['estado_pago' => 2]);
+        $message =['message'=>'Estado de pago actualizado'];
+        return response(json_encode($message), 200)->header('Content-type','text/plain');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -98,7 +115,7 @@ class ComprasController extends Controller
     }
     public function pagos(){
         //aqui se enlistan todos los pagos
-        $pagos =DB::select('SELECT id, (SELECT nombre FROM usuarios  WHERE pagos.vendedor_id = usuarios.id) AS "vendedor",notas, monto, fecha_pago FROM pagos');
+        $pagos =DB::select('SELECT id, (SELECT nombre FROM usuarios  WHERE pagos.vendedor_id = usuarios.id) AS "vendedor",notas, monto, fecha_pago, estado_pago FROM pagos');
         return view('compras.pagos', compact('pagos'));
     }
     public function validar(Request $request){
@@ -112,9 +129,6 @@ class ComprasController extends Controller
     }
     public function aceptar(Request $request){
         $compra = Compra::find($request['id']);
-        
-        
-        
         if($request['motivo'] != null){
             $compra->motivo=$request['motivo'];
             $compra->save();

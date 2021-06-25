@@ -36,6 +36,7 @@ Route::post('validar','AutenticarController@validar');
 Route::get('salir','AutenticarController@salir');
 Route::post('agregar','AutenticarController@agregar');
 Route::get('registrar','AutenticarController@registrar');
+Route::get('agregar/validarEmail','AutenticarController@validarEmail');
 Route::get('restorePassword', 'AutenticarController@recuperarContraseña');
 Route::put('updatePassword','AutenticarController@actualizarContraseña');
 
@@ -84,4 +85,5 @@ Route::get('Compras/Pagos/Create','ComprasController@create');
 
 Route::post('Compras/validar','ComprasController@validar');
 Route::post('Compras/validar/aceptar', 'ComprasController@aceptar');
+Route::get('Compras/updateStatusPago/{id}','ComprasController@updateStatusPago');
 Route::resource('Compras','ComprasController');
