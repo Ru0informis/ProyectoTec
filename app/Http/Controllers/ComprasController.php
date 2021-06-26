@@ -103,6 +103,20 @@ class ComprasController extends Controller
         $message =['message'=>'Estado de pago actualizado'];
         return response(json_encode($message), 200)->header('Content-type','text/plain');
     }
+    public function updateNota(Request $request, $id){
+        $pago_id = $request['pago_id'];
+        $nota = $request['nota'];
+        $updateStatus = DB::table('pagos')
+                        ->where('id', $pago_id)
+                        ->update(['notas' => $nota]);
+        if($updateStatus){
+            $message =['message'=>'Nota actualizada'];
+            return response(json_encode($message), 200)->header('Content-type','text/plain');
+        }else{
+            $message =['message'=>'Error al actualizar'];
+        return response(json_encode($message), 200)->header('Content-type','text/plain');
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

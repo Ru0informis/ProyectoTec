@@ -80,10 +80,14 @@ Route::resource('Clientes', 'ClientesController');
 Route::get('dashBoard/productos/compras/{id}','productosController@confirmarComp');
 Route::post('dashBoard/productos/compras/{id}/','productosController@añadircomp');
 Route::post('dashBoard/productos/compras/{id}/calificar','productosController@calificar');
+
 Route::get('Compras/Pagos','ComprasController@pagos');
 Route::get('Compras/Pagos/Create','ComprasController@create');
 
 Route::post('Compras/validar','ComprasController@validar');
 Route::post('Compras/validar/aceptar', 'ComprasController@aceptar');
 Route::get('Compras/updateStatusPago/{id}','ComprasController@updateStatusPago');
+Route::get('Compras/updateNota/{id}','ComprasController@updateNota');
+
+
 Route::resource('Compras','ComprasController');
